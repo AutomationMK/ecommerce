@@ -15,9 +15,9 @@ type stripePayload struct {
 
 type jsonResponse struct {
 	OK      bool   `json:"ok"`
-	Message string `json:"message"`
-	Content string `json:"content"`
-	ID      int    `json:"id"`
+	Message string `json:"message,omitempty"`
+	Content string `json:"content,omitempty"`
+	ID      int    `json:"id,omitempty"`
 }
 
 func (app *application) GetPaymentIntent(w http.ResponseWriter, r *http.Request) {
