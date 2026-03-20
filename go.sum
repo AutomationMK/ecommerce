@@ -1,0 +1,6 @@
+github.com/go-chi/chi/v5 v5.2.5 h1:Eg4myHZBjyvJmAFjFvWgrqDTXFyOzjj7YIm3L3mu6Ug=
+github.com/go-chi/chi/v5 v5.2.5/go.mod h1:X7Gx4mteadT3eDOMTsXzmI4/rwUpOwBHLpAfupzFJP0=
+github.com/go-chi/cors v1.2.2 h1:Jmey33TE+b+rB7fT8MUy1u0I4L+NARQlK6LhzKPSyQE=
+github.com/go-chi/cors v1.2.2/go.mod h1:sSbTewc+6wYHBBCW7ytsFSn836hqM7JxpglAy2Vzc58=
+github.com/stripe/stripe-go/v84 v84.4.1 h1:ixq1fG3y0k4OORVaN+LFAMBFaWiMrvKIcR9dSqT6gD8=
+github.com/stripe/stripe-go/v84 v84.4.1/go.mod h1:Z4gcKw1zl4geDG2+cjpSaJES9jaohGX6n7FP8/kHIqw=

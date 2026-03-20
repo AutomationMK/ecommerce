@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "An simple ecommerce application using a go backend and stripe",
+  "license": "MIT",
+  "author": "Max Kranker",
+  "type": "commonjs",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AutomationMK/ecommerce"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./static/css/input.css -o ./static/css/style.css --watch",
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/style.css"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.0"
+  }
+}
