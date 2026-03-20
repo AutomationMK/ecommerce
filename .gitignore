@@ -16,3 +16,4 @@ database.yml
 /emails
 .prettierrc
 /tmp
+/dist
