@@ -46,8 +46,8 @@ Max Kranker
 
 ## Version History
 
-* 1.0.0
-  * Initial Release
+* 0.1.0
+  * Initial Pre-Release
 
 ## License
 
