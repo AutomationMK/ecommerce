@@ -6,12 +6,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"text/template"
 	"time"
 )
 
 const version = "1.0.0"
-const cssVersion = "1"
 
 type config struct {
 	port int
@@ -27,11 +25,10 @@ type config struct {
 }
 
 type application struct {
-	config        config
-	infoLog       *log.Logger
-	errorLog      *log.Logger
-	templateCache map[string]*template.Template
-	version       string
+	config   config
+	infoLog  *log.Logger
+	errorLog *log.Logger
+	version  string
 }
 
 func (app *application) serve() error {
