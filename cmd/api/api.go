@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const version = "1.0.0"
+const version = "0.1.0"
 
 type config struct {
 	port int
@@ -63,6 +63,7 @@ func main() {
 		config:   cfg,
 		infoLog:  infoLog,
 		errorLog: errorLog,
+		version:  version,
 	}
 
 	err := app.serve()
