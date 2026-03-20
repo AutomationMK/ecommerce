@@ -1,4 +1,4 @@
-# Bookings Web Application
+# Ecommerce Web Application
 
 ## Description
 
