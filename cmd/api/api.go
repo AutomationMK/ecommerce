@@ -14,7 +14,6 @@ const version = "1.0.0"
 type config struct {
 	port int
 	env  string
-	api  string
 	db   struct {
 		dsn string
 	}
