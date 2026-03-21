@@ -141,7 +141,7 @@ Virtual Terminal
                     }).then((result) => {
                         if (result.error) {
                             // card declined or something went wrong with the card
-                            showError(result.error.message);
+                            showCardError(result.error.message);
                             showPayButtons();
                         } else if (result.paymentIntent) {
                             if (result.paymentIntent.status === "succeeded") {
