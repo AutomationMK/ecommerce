@@ -84,6 +84,11 @@ Virtual Terminal
         processing.classList.remove("hidden")
     }
 
+    function showPayButtons() {
+        payButton.classList.remove("hidden");
+        processing.classList.add("hidden")
+    }
+
     function val() {
         let form = document.getElementById("charge_form");
         if (form.checkValidity() === false) {
