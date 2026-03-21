@@ -95,6 +95,12 @@ Virtual Terminal
         cardMessages.innerText = msg;
     }
 
+    function showCardSuccess() {
+        cardMessages.classList.remove("bg-red-300", "text-red-800", "hidden");
+        cardMessages.classList.add("bg-green-300", "text-green-800");
+        cardMessages.innerText = "Transaction successful";
+    }
+
     function val() {
         let form = document.getElementById("charge_form");
         if (form.checkValidity() === false) {
