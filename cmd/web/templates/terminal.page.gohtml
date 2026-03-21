@@ -134,10 +134,12 @@ Virtual Terminal
                 try {
                     data = JSON.parse(response);
                     stripe.confirmCardPayment(data.client_secret, {
-                        card: card,
-                        billing_details: {
-                            name: document.getElementById("cardholder-name").value,
-                        }
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: document.getElementById("cardholder-name").value,
+                            },
+                        },
                     }).then((result) => {
                         if (result.error) {
                             // card declined or something went wrong with the card
