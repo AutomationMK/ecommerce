@@ -29,13 +29,13 @@ start: start_front start_back
 ## start_front: starts the front end
 start_front: build_front
 	@echo "Starting the front end..."
-	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} ./dist/gostripe -port=${GOSTRIPE_PORT} -dsn="${DSN}" &
+	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} POSTGRES_DB=${POSTGRES_DB} ./dist/gostripe -port=${GOSTRIPE_PORT} &
 	@echo "Front end running!"
 
 ## start_back: starts the back end
 start_back: build_back
 	@echo "Starting the back end..."
-	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} ./dist/gostripe_api -port=${API_PORT} &
+	@env STRIPE_KEY=${STRIPE_KEY} STRIPE_SECRET=${STRIPE_SECRET} POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} POSTGRES_DB=${POSTGRES_DB} ./dist/gostripe_api -port=${API_PORT} &
 	@echo "Back end running!"
 
 ## stop: stops the front and back end
