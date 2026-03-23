@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@layer components {
+    /********** navigation **********/
+    .nav {
+        @apply z-30 absolute translate-x-full lg:translate-x-0 lg:static left-0 w-full pt-30 lg:pt-0 lg:w-fit flex flex-col bg-blue-300/80 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none lg:flex-row items-center h-screen lg:h-full gap-8 sm:gap-6 lg:gap-8 ease-in-out duration-200;
+    }
+
+    .nav.open {
+        @apply translate-x-0;
+    }
+
+    .hamburger {
+        @apply relative border-3 border-white py-5 h-8 w-12 z-30 rounded-md cursor-pointer before:content-[''] before:bg-white before:h-0.5 before:w-2/3 before:absolute before:top-4 before:left-2 after:bg-white after:h-0.5 after:w-1/3 after:absolute after:top-6 after:left-2 before:transition after:transition self-center;
+    }
+
+    .hamburger.close {
+        @apply before:rotate-45 before:translate-y-1 after:w-2/3 after:-rotate-45 after:-translate-y-1;
+    }
+}
