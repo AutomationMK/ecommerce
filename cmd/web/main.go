@@ -52,8 +52,13 @@ func (app *application) serve() error {
 func main() {
 	var cfg config
 
+	dbName := os.Getenv("POSTGRES_DB")
+	dbUser := os.Getenv("POSTGRES_USER")
+	dbPassword := os.Getenv("POSTGRES_PASSWORD")
+
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment {development|production}")
+	flag.StringVar(&cfg.db.dsn, "dsn", fmt.Sprintf("host=localhost port=5431 dbname=%s user=%s password=%s", dbName, dbUser, dbPassword), "Database DSN string")
 	flag.StringVar(&cfg.api, "api", "http://localhost:4001", "URL to api")
 
 	flag.Parse()
