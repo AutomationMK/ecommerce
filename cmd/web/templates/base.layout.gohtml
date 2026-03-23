@@ -1,22 +1,59 @@
 {{define "base"}}
 <!doctype html>
-<html lang="en">
+<html class="overflow-x-hidden" lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
         {{block "title" .}}
         {{end}}
     </title>
     <link href="/static/css/style.css" rel="stylesheet" />
+    <script defer src="/static/js/index.js"></script>
 </head>
 
-<body>
-    <div class="container mx-auto px-4">
+<body class="overflow-x-hidden bg-white">
+    <section class="fixed flex flex-col z-30 w-full">
+        <nav class="h-18 md:h-20 lg:h-26 bg-blue-300 lg:relative">
+            <div class="container mx-auto px-4 h-full flex justify-between">
+                <div class="py-2 md:py-3 lg:py-4 z-40">
+                    <div class="flex items-center gap-2 md:gap-3 lg:gap-4 px-5 py-2 h-full rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-8 md:h-10 lg:h-12 text-blue-800">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                        </svg>
+                        <p class="md:text-lg lg:text-2xl text-white font-black">StoreFront</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 max-lg:overflow-hidden">
+                    <ul class="nav">
+                        <li>
+                            <a href="/"
+                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Home</a>
+                        </li>
+                        <li>
+                            <a href="/virtual-terminal"
+                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Virtual
+                                Terminal</a>
+                        </li>
+                        <li>
+                            <a href="/charge-once"
+                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Charge
+                                Once</a>
+                        </li>
+                    </ul>
+                    <div class="hamburger lg:hidden"></div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <main class="mt-18 md:mt-20 lg:mt-26">
         {{block "content" .}}
         {{end}}
-    </div>
+    </main>
     {{block "js" .}}
     {{end}}
 </body>
