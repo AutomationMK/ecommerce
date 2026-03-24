@@ -38,6 +38,7 @@ Such as
 * [cors](https://github.com/go-chi/cors) v1.2.2 (http middleware for go)
 * [tailwindcss](https://github.com/tailwindlabs/tailwindcss) v4.2.0 (as a css framework tool)
 * [pgx](https://github.com/jackc/pgx/v5) v5.9.1 (Posgresql driver for go)
+* [scs](https://github.com/alexedwards/scs/v2) v2.9.0 (HTTP session management for go)
 
 ### Installing manually
 
