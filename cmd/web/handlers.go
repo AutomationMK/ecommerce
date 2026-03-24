@@ -138,6 +138,16 @@ func (app *application) SaveTransaction(txn models.Transaction) (int, error) {
 	return id, nil
 }
 
+// SaveOrder saves an order and returns id
+func (app *application) SaveOrder(ord models.Order) (int, error) {
+	id, err := app.DB.InsertOrder(ord)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
+}
+
 // ChargeOnce renders the buy-once template page
 func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
