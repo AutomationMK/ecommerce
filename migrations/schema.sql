@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict N9dYFf5b8UyKKKFzdRgu6rggMBDgaKBYts7idwVTftep8AqNoGirANqCdSr3SU1
+\restrict Pg4DbTNGtPyH9wyZMka7WEkUXhirhTOzA7TvsR4AGHHZmOxy1My2LCbHAFjdzKC
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -187,6 +187,45 @@ ALTER SEQUENCE public.transactions_id_seq OWNED BY public.transactions.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    first_name character varying(255) NOT NULL,
+    last_name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(60) NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
 -- Name: widgets; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -254,6 +293,13 @@ ALTER TABLE ONLY public.transactions ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
 -- Name: widgets id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -298,6 +344,14 @@ ALTER TABLE ONLY public.transaction_statuses
 
 ALTER TABLE ONLY public.transactions
     ADD CONSTRAINT transactions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -351,5 +405,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict N9dYFf5b8UyKKKFzdRgu6rggMBDgaKBYts7idwVTftep8AqNoGirANqCdSr3SU1
+\unrestrict Pg4DbTNGtPyH9wyZMka7WEkUXhirhTOzA7TvsR4AGHHZmOxy1My2LCbHAFjdzKC
 
