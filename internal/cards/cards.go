@@ -24,6 +24,7 @@ func (c *Card) Charge(currency string, amount int) (*stripe.PaymentIntent, strin
 	return c.CreatePaymentIntent(currency, amount)
 }
 
+// CreatePaymentIntent creates a payment intent based on currency iso code and amount
 func (c *Card) CreatePaymentIntent(currency string, amount int) (*stripe.PaymentIntent, string, error) {
 	stripe.Key = c.Secret
 
