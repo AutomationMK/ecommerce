@@ -199,12 +199,15 @@ func (app *application) SaveOrder(ord models.Order) (int, error) {
 
 // Receipt renders the receipt template page
 func (app *application) Receipt(w http.ResponseWriter, r *http.Request) {
-	data, ok := app.Session.Get(r.Context(), "receipt").(map[string]any)
+	txn, ok := app.Session.Get(r.Context(), "receipt").(TransactionData)
 	if !ok {
 		app.errorLog.Println("missing receipt session variable")
 		return
 	}
 	app.Session.Remove(r.Context(), "receipt")
+
+	data := make(map[string]any)
+	data["txn"] = txn
 
 	if err := app.renderTemplate(w, r, "receipt", &templateData{
 		Data: data,
