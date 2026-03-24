@@ -1,1 +1,2 @@
 drop_table("transactions")
+drop_table("transaction_statuses")
