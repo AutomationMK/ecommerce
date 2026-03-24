@@ -141,9 +141,9 @@ func (m *DBModel) InsertTransaction(txn Transaction) (int, error) {
 
 	stmt := `
 		INSERT INTO transactions (
-			amount, currency, last_four, bank_return_code,
-			transaction_status_id, created_at, updated_at
-		) VALUES ($1, $2, $3, $4, $5, $6, $7)
+			amount, currency, last_four, bank_return_code, expiry_month,
+			expiry_year, transaction_status_id, created_at, updated_at
+		) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 		RETURNING id
 	`
 
@@ -153,6 +153,8 @@ func (m *DBModel) InsertTransaction(txn Transaction) (int, error) {
 		txn.Currency,
 		txn.LastFour,
 		txn.BankReturnCode,
+		txn.ExpiryMonth,
+		txn.ExpiryYear,
 		txn.TransactionStatusID,
 		time.Now().UTC(),
 		time.Now().UTC(),
