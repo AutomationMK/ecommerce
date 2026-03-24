@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/gob"
 	"flag"
 	"fmt"
 	"html/template"
@@ -85,6 +86,7 @@ func main() {
 	defer conn.Close(context.Background())
 
 	// set up session
+	gob.Register(map[string]any{}) // allow session access to Data template data type
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 
