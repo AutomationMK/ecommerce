@@ -46,9 +46,6 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 
 // ChargeOnce renders the buy-once template page
 func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
-	stringMap := make(map[string]string)
-	stringMap["publishable_key"] = app.config.stripe.key
-
 	widget := models.Widget{
 		ID:             1,
 		Name:           "Custom Widget",
@@ -61,8 +58,7 @@ func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
 	data["widget"] = widget
 
 	if err := app.renderTemplate(w, r, "buy-once", &templateData{
-		StringMap: stringMap,
-		Data:      data,
+		Data: data,
 	}, "stripe-js"); err != nil {
 		app.errorLog.Println(err)
 	}
