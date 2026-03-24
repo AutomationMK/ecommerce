@@ -37,6 +37,7 @@ Such as
 * [stripe-go](https://github.com/stripe/stripe-go) v84.4.1 (go library for stripe API)
 * [cors](github.com/go-chi/cors) v1.2.2 (http middleware for go)
 * [tailwindcss](https://github.com/tailwindlabs/tailwindcss) v4.2.0 (as a css framework tool)
+* [pgx](https://github.com/jackc/pgx/v5) v5.9.1 (Posgresql driver for go)
 
 ### Installing manually
 
