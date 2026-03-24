@@ -1,6 +1,7 @@
 package models
 
 import (
+	"context"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -32,4 +33,26 @@ type Widget struct {
 	Price          int       `json:"price"`
 	CreatedAt      time.Time `json:"-"`
 	UpdatedAt      time.Time `json:"-"`
+}
+
+// GetWidget gets widget data from the database
+func (m *DBModel) GetWidget(id int) (Widget, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	var widget Widget
+
+	query := `
+		SELECT id, name, description, inventory_level, price, created_at, updated_at
+		FROM widgets
+		WHERE id = $1
+	`
+	row := m.DB.QueryRow(ctx, query, id)
+	err := row.Scan(&widget.ID, &widget.Name, &widget.Description,
+		&widget.InventoryLevel, &widget.Price, &widget.CreatedAt, &widget.UpdatedAt)
+	if err != nil {
+		return widget, err
+	}
+
+	return widget, nil
 }
