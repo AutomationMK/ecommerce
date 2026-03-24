@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict EHDKxczw6aDBQkfv7lkXcG8uZTG2xGs3bnagE0jKAjPO0MrLKwkaYVxGWbXdtXE
+\restrict FfJHHydzwbcacU5t4pekWya1ZxiDYh1AhjLIiojwfYm3Xbqebvywh1Vz7WUCgIN
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -22,6 +22,44 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.customers (
+    id integer NOT NULL,
+    first_name character varying(255) NOT NULL,
+    last_name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.customers OWNER TO postgres;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.customers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.customers_id_seq OWNER TO postgres;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
+
 
 --
 -- Name: orders; Type: TABLE; Schema: public; Owner: postgres
@@ -266,6 +304,13 @@ ALTER SEQUENCE public.widgets_id_seq OWNED BY public.widgets.id;
 
 
 --
+-- Name: customers id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
+
+
+--
 -- Name: orders id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -305,6 +350,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 ALTER TABLE ONLY public.widgets ALTER COLUMN id SET DEFAULT nextval('public.widgets_id_seq'::regclass);
+
+
+--
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
 
 
 --
@@ -406,5 +459,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict EHDKxczw6aDBQkfv7lkXcG8uZTG2xGs3bnagE0jKAjPO0MrLKwkaYVxGWbXdtXE
+\unrestrict FfJHHydzwbcacU5t4pekWya1ZxiDYh1AhjLIiojwfYm3Xbqebvywh1Vz7WUCgIN
 
