@@ -84,3 +84,15 @@ type TransactionStatus struct {
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 }
+
+// Transaction is the type for all transactions
+type Transaction struct {
+	ID                  int       `json:"id"`
+	Amount              int       `json:"amount"`
+	Currency            string    `json:"currency"`
+	LastFour            string    `json:"last_four"`
+	BankReturnCode      string    `json:"bank_return_code"`
+	TransactionStatusId int       `json:"transaction_status_id"`
+	CreatedAt           time.Time `json:"-"`
+	UpdatedAt           time.Time `json:"-"`
+}
