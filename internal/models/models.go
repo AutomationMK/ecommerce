@@ -66,6 +66,7 @@ type Order struct {
 	WidgetID      int       `json:"widget_id"`
 	TransactionID int       `json:"transaction_id"`
 	StatusID      int       `json:"status_id"`
+	CustomerID    int       `json:"customer_id"`
 	Quantity      int       `json:"quantity"`
 	Amount        int       `json:"amount"`
 	CreatedAt     time.Time `json:"-"`
