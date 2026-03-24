@@ -181,3 +181,31 @@ type Customer struct {
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 }
+
+// InsertCustomer inserts a new customer into the database
+func (m *DBModel) InsertCustomer(cus Customer) (int, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	stmt := `
+		INSERT INTO customers (
+			first_name, last_name, email,
+			created_at, updated_at
+		) VALUES ($1, $2, $3, $4, $5)
+		RETURNING id
+	`
+
+	var newID int
+	err := m.DB.QueryRow(ctx, stmt,
+		cus.FirstName,
+		cus.LastName,
+		cus.Email,
+		time.Now().UTC(),
+		time.Now().UTC(),
+	).Scan(&newID)
+	if err != nil {
+		return 0, err
+	}
+
+	return newID, nil
+}
