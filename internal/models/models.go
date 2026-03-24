@@ -81,8 +81,8 @@ func (m *DBModel) InsertOrder(ord Order) (int, error) {
 	stmt := `
 		INSERT INTO orders (
 			widget_id, transaction_id, status_id, quantity,
-			amount, created_at, updated_at
-		) VALUES ($1, $2, $3, $4, $5, $6, $7)
+			amount, customer_id, created_at, updated_at
+		) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 		RETURNING id
 	`
 
@@ -93,6 +93,7 @@ func (m *DBModel) InsertOrder(ord Order) (int, error) {
 		ord.StatusID,
 		ord.Quantity,
 		ord.Amount,
+		ord.CustomerID,
 		time.Now().UTC(),
 		time.Now().UTC(),
 	).Scan(&newID)
