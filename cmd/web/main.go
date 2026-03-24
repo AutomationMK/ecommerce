@@ -86,7 +86,7 @@ func main() {
 	defer conn.Close(context.Background())
 
 	// set up session
-	gob.Register(map[string]any{}) // allow session access to Data template data type
+	gob.Register(TransactionData{}) // allow session access to TransactionData type
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 
