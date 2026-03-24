@@ -72,6 +72,36 @@ type Order struct {
 	UpdatedAt     time.Time `json:"-"`
 }
 
+// InsertOrder inserts a new order into the database
+func (m *DBModel) InsertOrder(ord Order) (int, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	stmt := `
+		INSERT INTO orders (
+			widget_id, transaction_id, status_id, quantity,
+			amount, created_at, updated_at
+		) VALUES ($1, $2, $3, $4, $5, $6, $7)
+		RETURNING id
+	`
+
+	var newID int
+	err := m.DB.QueryRow(ctx, stmt,
+		ord.WidgetID,
+		ord.TransactionID,
+		ord.StatusID,
+		ord.Quantity,
+		ord.Amount,
+		time.Now().UTC(),
+		time.Now().UTC(),
+	).Scan(&newID)
+	if err != nil {
+		return 0, err
+	}
+
+	return newID, nil
+}
+
 // Status is the type for all statuses
 type Status struct {
 	ID        int       `json:"id"`
