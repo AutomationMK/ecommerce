@@ -105,6 +105,16 @@ func (app *application) SaveCustomer(firstName, lastName, email string) (int, er
 	return id, nil
 }
 
+// SaveTransaction saves a transaction and returns id
+func (app *application) SaveTransaction(txn models.Transaction) (int, error) {
+	id, err := app.DB.InsertTransaction(txn)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
+}
+
 // ChargeOnce renders the buy-once template page
 func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
