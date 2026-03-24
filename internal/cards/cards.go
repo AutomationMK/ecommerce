@@ -20,6 +20,7 @@ type Transaction struct {
 	BankReturnCode      string
 }
 
+// Charge is a wrapper for CreatePaymentIntent
 func (c *Card) Charge(currency string, amount int) (*stripe.PaymentIntent, string, error) {
 	return c.CreatePaymentIntent(currency, amount)
 }
