@@ -1,0 +1,30 @@
+{{template "base" .}}
+
+{{define "title"}}
+StoreFront - We Have What You Need
+{{end}}
+
+{{define "content"}}
+<section class="relative h-[calc(100vh-5.5rem)] w-full">
+    <figure class="absolute h-full w-full">
+        <img src="/static/image/hero.webp" alt="StoreFront" class="h-full w-full relative contrast-10 object-cover">
+        <figcaption
+            class="absolute flex flex-col gap-4 lg:gap-8 max-w-xl top-1/2 left-2/4 -translate-y-2/4 -translate-x-2/4">
+            <div class="flex flex-col gap-2 lg:gap-4">
+                <h2
+                    class="text-3xl md:text-5xl lg:text-7xl text-center text-blue-200 font-bold text-shadow-md text-shadow-stone-700">
+                    StoreFront
+                </h2>
+                <p
+                    class="text-base md:text-lg lg:text-3xl text-center text-blue-200 text-shadow-md text-shadow-stone-700">
+                    With over 40 years of experience we have what you need
+                </p>
+            </div>
+            <a href="#"
+                class="bg-blue-500 flex justify-center py-2 lg:py-4 text-lg md:text-2xl lg:text-3xl text-white font-bold rounded-md border-4 border-blue-500 hover:bg-transparent hover:text-blue-200 transition">
+                See Products
+            </a>
+        </figcaption>
+    </figure>
+</section>
+{{end}}
