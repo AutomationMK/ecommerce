@@ -31,6 +31,8 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 	}
 
 	// read posted data
+	firstName := r.Form.Get("first_name")
+	lastName := r.Form.Get("last_name")
 	cardHolder := r.Form.Get("cardholder_name")
 	cardholderEmail := r.Form.Get("cardholder_email")
 	paymentIntent := r.Form.Get("payment_intent")
@@ -58,6 +60,15 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 	lastFour := pm.Card.Last4
 	expiryMonth := pm.Card.ExpMonth
 	expiryYear := pm.Card.ExpYear
+
+	// create a new customer
+	customerID, err := app.SaveCustomer(firstName, lastName, cardholderEmail)
+	if err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	app.infoLog.Println(customerID)
 
 	data := make(map[string]any)
 	data["cardholder"] = cardHolder
