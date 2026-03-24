@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 6XuMkGf2sdCbucxliRoukYhyAscSgirxfNqq5V6iTglMlCvjGBU4ZMrzOm4Xzge
+\restrict 2fLPKAnifIthJdNGmtcpr0TwmWBW3UWRn5nEIFe3b1qHxmtExdZOgVLTZAxiCOj
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -73,7 +73,8 @@ CREATE TABLE public.orders (
     quantity integer NOT NULL,
     amount integer NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
-    updated_at timestamp without time zone DEFAULT now() NOT NULL
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    customer_id integer NOT NULL
 );
 
 
@@ -426,6 +427,14 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: orders orders_customers_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_customers_id_fk FOREIGN KEY (customer_id) REFERENCES public.customers(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: orders orders_statuses_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -461,5 +470,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 6XuMkGf2sdCbucxliRoukYhyAscSgirxfNqq5V6iTglMlCvjGBU4ZMrzOm4Xzge
+\unrestrict 2fLPKAnifIthJdNGmtcpr0TwmWBW3UWRn5nEIFe3b1qHxmtExdZOgVLTZAxiCOj
 
