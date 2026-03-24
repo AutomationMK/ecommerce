@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Pg4DbTNGtPyH9wyZMka7WEkUXhirhTOzA7TvsR4AGHHZmOxy1My2LCbHAFjdzKC
+\restrict i89T7GqB4SufNHFqGspsnG4IgA5JiOTe5BgeabhgCswVorpORhbweRZLZpIBn07
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -236,7 +236,8 @@ CREATE TABLE public.widgets (
     inventory_level integer NOT NULL,
     price integer NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
-    updated_at timestamp without time zone DEFAULT now() NOT NULL
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    image character varying(255) DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -405,5 +406,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Pg4DbTNGtPyH9wyZMka7WEkUXhirhTOzA7TvsR4AGHHZmOxy1My2LCbHAFjdzKC
+\unrestrict i89T7GqB4SufNHFqGspsnG4IgA5JiOTe5BgeabhgCswVorpORhbweRZLZpIBn07
 
