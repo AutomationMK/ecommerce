@@ -13,6 +13,7 @@ type Card struct {
 	Currency string
 }
 
+// Transaction holds transaction data to store in the database
 type Transaction struct {
 	TransactionStatusID int
 	Amount              int
