@@ -6,6 +6,7 @@ import (
 	"github.com/stripe/stripe-go/v84/paymentmethod"
 )
 
+// Card holds card data needed for stripe
 type Card struct {
 	Secret   string
 	Key      string
