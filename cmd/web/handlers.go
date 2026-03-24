@@ -21,6 +21,20 @@ func (app *application) VirtualTerminal(w http.ResponseWriter, r *http.Request) 
 	}
 }
 
+type TransactionData struct {
+	FirstName       string
+	LastName        string
+	Email           string
+	PaymentIntentID string
+	PaymentMethodID string
+	PaymentAmount   int
+	PaymentCurrency string
+	LastFour        string
+	ExpiryMonth     int
+	ExpiryYear      int
+	BankReturnCode  string
+}
+
 // PaymentSucceded parses all cardholder and payment post data and renders a succeeded
 // template page
 func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) {
