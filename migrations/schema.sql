@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 06YBboyADPIsWmqc0CGtccKzXGmAXzfUE6UTZsONmeRQeL7vUk7hpIJcMpUhv2U
+\restrict 6XqlAwtGvv1hjvuCtgc3cW0vlqtxsNPCeoSqOjYrbnMlo9652d39hwDuIFliKL4
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -71,6 +71,46 @@ ALTER SEQUENCE public.transaction_statuses_id_seq OWNED BY public.transaction_st
 
 
 --
+-- Name: transactions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.transactions (
+    id integer NOT NULL,
+    amount integer NOT NULL,
+    currency character varying(255) NOT NULL,
+    last_four character varying(255) NOT NULL,
+    bank_return_code character varying(255) NOT NULL,
+    transaction_status_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.transactions OWNER TO postgres;
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.transactions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.transactions_id_seq OWNER TO postgres;
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.transactions_id_seq OWNED BY public.transactions.id;
+
+
+--
 -- Name: widgets; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -117,6 +157,13 @@ ALTER TABLE ONLY public.transaction_statuses ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: transactions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transactions ALTER COLUMN id SET DEFAULT nextval('public.transactions_id_seq'::regclass);
+
+
+--
 -- Name: widgets id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -140,6 +187,14 @@ ALTER TABLE ONLY public.transaction_statuses
 
 
 --
+-- Name: transactions transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT transactions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: widgets widgets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -155,8 +210,16 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: transactions transactions_transaction_statuses_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT transactions_transaction_statuses_id_fk FOREIGN KEY (transaction_status_id) REFERENCES public.transaction_statuses(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 06YBboyADPIsWmqc0CGtccKzXGmAXzfUE6UTZsONmeRQeL7vUk7hpIJcMpUhv2U
+\unrestrict 6XqlAwtGvv1hjvuCtgc3cW0vlqtxsNPCeoSqOjYrbnMlo9652d39hwDuIFliKL4
 
