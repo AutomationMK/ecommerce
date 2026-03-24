@@ -68,3 +68,11 @@ type Order struct {
 	CreatedAt     time.Time `json:"-"`
 	UpdatedAt     time.Time `json:"-"`
 }
+
+// Status is the type for all statuses
+type Status struct {
+	ID        int       `json:"id"`
+	Name      string    `json:"name"`
+	CreatedAt time.Time `json:"-"`
+	UpdatedAt time.Time `json:"-"`
+}
