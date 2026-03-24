@@ -70,13 +70,17 @@ Virtual Terminal
 
 {{define "js"}}
 <script>
-    document.getElementById("charge_amount", function (e) {
+    const chargeAmount = document.getElementById("charge_amount");
+    const amount = document.getElementById("amount");
+    amount.value = 0;
+
+    chargeAmount.addEventListener("change", function (e) {
         if (e.target.value !== "") {
-            document.getElementById("amount").value = evt.target.value * 100;
+            amount.value = e.target.value * 100;
         } else {
-            document.getElementId("amount").value = 0;
+            amount.value = 0;
         }
-    })
+    });
 </script>
 {{template "stripe-js" .}}
 {{end}}
