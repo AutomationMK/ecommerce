@@ -100,6 +100,36 @@ type Transaction struct {
 	UpdatedAt           time.Time `json:"-"`
 }
 
+// InsertTransaction inserts a new transaction into the database
+func (m *DBModel) InsertTransaction(txn Transaction) (int, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	stmt := `
+		INSERT INTO transactions (
+			amount, currency, last_four, bank_return_code,
+			transaction_status_id, created_at, updated_at
+		) VALUES ($1, $2, $3, $4, $5, $6, $7)
+		RETURNING id
+	`
+
+	var newID int
+	err := m.DB.QueryRow(ctx, stmt,
+		txn.Amount,
+		txn.Currency,
+		txn.LastFour,
+		txn.BankReturnCode,
+		txn.TransactionStatusID,
+		time.Now().UTC(),
+		time.Now().UTC(),
+	).Scan(&newID)
+	if err != nil {
+		return 0, err
+	}
+
+	return newID, nil
+}
+
 // User is the type for all users
 type User struct {
 	ID        int       `json:"id"`
