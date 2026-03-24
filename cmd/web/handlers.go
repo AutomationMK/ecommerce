@@ -123,11 +123,9 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 	data["first_name"] = firstName
 	data["last_name"] = lastName
 
-	if err = app.renderTemplate(w, r, "succeeded", &templateData{
-		Data: data,
-	}); err != nil {
-		app.errorLog.Println(err)
-	}
+	// write data to session and redirect to new page
+	app.Session.Put(r.Context(), "receipt", data)
+	http.Redirect(w, r, "/receipt", http.StatusSeeOther)
 }
 
 // SaveCustomer saves a customer and returns id
@@ -164,6 +162,22 @@ func (app *application) SaveOrder(ord models.Order) (int, error) {
 	}
 
 	return id, nil
+}
+
+// Receipt renders the receipt template page
+func (app *application) Receipt(w http.ResponseWriter, r *http.Request) {
+	data, ok := app.Session.Get(r.Context(), "receipt").(map[string]any)
+	if !ok {
+		app.errorLog.Println("missing receipt session variable")
+		return
+	}
+	app.Session.Remove(r.Context(), "receipt")
+
+	if err := app.renderTemplate(w, r, "receipt", &templateData{
+		Data: data,
+	}); err != nil {
+		app.errorLog.Println(err)
+	}
 }
 
 // ChargeOnce renders the buy-once template page
