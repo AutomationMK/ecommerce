@@ -56,3 +56,15 @@ func (m *DBModel) GetWidget(id int) (Widget, error) {
 
 	return widget, nil
 }
+
+// Order is the type for all orders
+type Order struct {
+	ID            int       `json:"id"`
+	WidgetId      int       `json:"widget_id"`
+	TransactionId int       `json:"transaction_id"`
+	StatusId      int       `json:"status_id"`
+	Quantity      int       `json:"quantity"`
+	Amount        int       `json:"amount"`
+	CreatedAt     time.Time `json:"-"`
+	UpdatedAt     time.Time `json:"-"`
+}
