@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict FfJHHydzwbcacU5t4pekWya1ZxiDYh1AhjLIiojwfYm3Xbqebvywh1Vz7WUCgIN
+\restrict 6XuMkGf2sdCbucxliRoukYhyAscSgirxfNqq5V6iTglMlCvjGBU4ZMrzOm4Xzge
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -196,7 +196,9 @@ CREATE TABLE public.transactions (
     bank_return_code character varying(255) NOT NULL,
     transaction_status_id integer NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
-    updated_at timestamp without time zone DEFAULT now() NOT NULL
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    expiry_month integer DEFAULT 0 NOT NULL,
+    expiry_year integer DEFAULT 0 NOT NULL
 );
 
 
@@ -459,5 +461,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict FfJHHydzwbcacU5t4pekWya1ZxiDYh1AhjLIiojwfYm3Xbqebvywh1Vz7WUCgIN
+\unrestrict 6XuMkGf2sdCbucxliRoukYhyAscSgirxfNqq5V6iTglMlCvjGBU4ZMrzOm4Xzge
 
