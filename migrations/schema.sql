@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict GIc43MRH2gF6gqf18PRGBs2pkTJclgF3MfuTsA0b5pg0bdtGIG0f0mjcMH6qhnJ
+\restrict XXA29eVk4BygXp8ArDNDuucuqswoJBzUzTj3yhaDyOTfFpKlRL7WDuNuTFXAWiw
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -73,6 +73,42 @@ CREATE TABLE public.schema_migration (
 
 
 ALTER TABLE public.schema_migration OWNER TO postgres;
+
+--
+-- Name: statuses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.statuses (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.statuses OWNER TO postgres;
+
+--
+-- Name: statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.statuses_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.statuses_id_seq OWNER TO postgres;
+
+--
+-- Name: statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.statuses_id_seq OWNED BY public.statuses.id;
+
 
 --
 -- Name: transaction_statuses; Type: TABLE; Schema: public; Owner: postgres
@@ -197,6 +233,13 @@ ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.order
 
 
 --
+-- Name: statuses id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.statuses ALTER COLUMN id SET DEFAULT nextval('public.statuses_id_seq'::regclass);
+
+
+--
 -- Name: transaction_statuses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -234,6 +277,14 @@ ALTER TABLE ONLY public.schema_migration
 
 
 --
+-- Name: statuses statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.statuses
+    ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: transaction_statuses transaction_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -265,6 +316,14 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: orders orders_statuses_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_statuses_id_fk FOREIGN KEY (status_id) REFERENCES public.statuses(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: orders orders_transactions_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -292,5 +351,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict GIc43MRH2gF6gqf18PRGBs2pkTJclgF3MfuTsA0b5pg0bdtGIG0f0mjcMH6qhnJ
+\unrestrict XXA29eVk4BygXp8ArDNDuucuqswoJBzUzTj3yhaDyOTfFpKlRL7WDuNuTFXAWiw
 
