@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
+	"github.com/AutomationMK/ecommerce/internal/models"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -75,6 +76,22 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 	}); err != nil {
 		app.errorLog.Println(err)
 	}
+}
+
+// SaveCustomer saves a customer and returns id
+func (app *application) SaveCustomer(firstName, lastName, email string) (int, error) {
+	customer := models.Customer{
+		FirstName: firstName,
+		LastName:  lastName,
+		Email:     email,
+	}
+
+	id, err := app.DB.InsertCustomer(customer)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
 }
 
 // ChargeOnce renders the buy-once template page
