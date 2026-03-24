@@ -86,6 +86,8 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 		ExpiryYear:          int(expiryYear),
 		BankReturnCode:      pi.LatestCharge.ID,
 		TransactionStatusID: 2,
+		PaymentIntent:       paymentIntent,
+		PaymentMethod:       paymentMethod,
 	}
 	transactionID, err := app.SaveTransaction(txn)
 	if err != nil {
