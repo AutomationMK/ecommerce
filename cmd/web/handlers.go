@@ -70,6 +70,29 @@ func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request)
 
 	app.infoLog.Println(customerID)
 
+	// create a new transaction
+	amount, err := strconv.Atoi(paymentAmount)
+	if err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+	txn := models.Transaction{
+		Amount:              amount,
+		Currency:            paymentCurrency,
+		LastFour:            lastFour,
+		ExpiryMonth:         int(expiryMonth),
+		ExpiryYear:          int(expiryYear),
+		BankReturnCode:      pi.LatestCharge.ID,
+		TransactionStatusID: 2,
+	}
+	transactionID, err := app.SaveTransaction(txn)
+	if err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	app.infoLog.Println(transactionID)
+
 	data := make(map[string]any)
 	data["cardholder"] = cardHolder
 	data["cardholder_email"] = cardholderEmail
