@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 6XqlAwtGvv1hjvuCtgc3cW0vlqtxsNPCeoSqOjYrbnMlo9652d39hwDuIFliKL4
+\restrict GIc43MRH2gF6gqf18PRGBs2pkTJclgF3MfuTsA0b5pg0bdtGIG0f0mjcMH6qhnJ
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -22,6 +22,46 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    widget_id integer NOT NULL,
+    transaction_id integer NOT NULL,
+    status_id integer NOT NULL,
+    quantity integer NOT NULL,
+    amount integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.orders OWNER TO postgres;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.orders_id_seq OWNER TO postgres;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
 
 --
 -- Name: schema_migration; Type: TABLE; Schema: public; Owner: postgres
@@ -150,6 +190,13 @@ ALTER SEQUENCE public.widgets_id_seq OWNED BY public.widgets.id;
 
 
 --
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
 -- Name: transaction_statuses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -168,6 +215,14 @@ ALTER TABLE ONLY public.transactions ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public.widgets ALTER COLUMN id SET DEFAULT nextval('public.widgets_id_seq'::regclass);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 
 
 --
@@ -210,6 +265,22 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: orders orders_transactions_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_transactions_id_fk FOREIGN KEY (transaction_id) REFERENCES public.transactions(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: orders orders_widgets_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_widgets_id_fk FOREIGN KEY (widget_id) REFERENCES public.widgets(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: transactions transactions_transaction_statuses_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -221,5 +292,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 6XqlAwtGvv1hjvuCtgc3cW0vlqtxsNPCeoSqOjYrbnMlo9652d39hwDuIFliKL4
+\unrestrict GIc43MRH2gF6gqf18PRGBs2pkTJclgF3MfuTsA0b5pg0bdtGIG0f0mjcMH6qhnJ
 
