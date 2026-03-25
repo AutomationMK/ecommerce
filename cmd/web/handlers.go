@@ -126,6 +126,25 @@ func (app *application) VirtualTerminalPaymentSucceeded(w http.ResponseWriter, r
 	http.Redirect(w, r, "/virtual-terminal-receipt", http.StatusSeeOther)
 }
 
+// VirtualTerminalReceipt renders the virtual-terminal-receipt template page
+func (app *application) VirtualTerminalReceipt(w http.ResponseWriter, r *http.Request) {
+	txn, ok := app.Session.Get(r.Context(), "receipt").(TransactionData)
+	if !ok {
+		app.errorLog.Println("missing receipt session variable")
+		return
+	}
+	app.Session.Remove(r.Context(), "receipt")
+
+	data := make(map[string]any)
+	data["txn"] = txn
+
+	if err := app.renderTemplate(w, r, "virtual-terminal-receipt", &templateData{
+		Data: data,
+	}); err != nil {
+		app.errorLog.Println(err)
+	}
+}
+
 // PaymentSucceded parses all cardholder and payment post data and renders a succeeded
 // template page
 func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) {
