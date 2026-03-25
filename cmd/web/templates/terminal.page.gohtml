@@ -82,7 +82,7 @@ Virtual Terminal
 
     chargeAmount.addEventListener("change", function (e) {
         if (e.target.value !== "") {
-            amount.value = e.target.value * 100;
+            amount.value = parseInt((e.target.value * 100), 10);
         } else {
             amount.value = 0;
         }
