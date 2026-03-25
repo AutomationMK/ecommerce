@@ -94,6 +94,38 @@ func (app *application) GetTransactionData(r *http.Request) (TransactionData, er
 	return txnData, nil
 }
 
+// VirtualTerminalPaymentSucceeded parses all cardholder and payment post data from
+// virtual terminal
+func (app *application) VirtualTerminalPaymentSucceeded(w http.ResponseWriter, r *http.Request) {
+	// get standard transaction data
+	txnData, err := app.GetTransactionData(r)
+	if err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	txn := models.Transaction{
+		Amount:              txnData.PaymentAmount,
+		Currency:            txnData.PaymentCurrency,
+		LastFour:            txnData.LastFour,
+		ExpiryMonth:         txnData.ExpiryMonth,
+		ExpiryYear:          txnData.ExpiryYear,
+		BankReturnCode:      txnData.BankReturnCode,
+		TransactionStatusID: 2,
+		PaymentIntent:       txnData.PaymentIntentID,
+		PaymentMethod:       txnData.PaymentMethodID,
+	}
+	_, err = app.SaveTransaction(txn)
+	if err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	// write data to session and redirect to new page
+	app.Session.Put(r.Context(), "receipt", txnData)
+	http.Redirect(w, r, "/virtual-terminal-receipt", http.StatusSeeOther)
+}
+
 // PaymentSucceded parses all cardholder and payment post data and renders a succeeded
 // template page
 func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) {
