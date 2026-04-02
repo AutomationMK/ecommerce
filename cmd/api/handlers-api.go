@@ -7,6 +7,7 @@ import (
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
 	"github.com/go-chi/chi/v5"
+	"github.com/stripe/stripe-go/v84"
 )
 
 type stripePayload struct {
@@ -124,21 +125,24 @@ func (app *application) CreateCustomerAndSubscribe(w http.ResponseWriter, r *htt
 		Currency: data.Currency,
 	}
 
+	okay := true
+	var subscription *stripe.Subscription
+
 	stripeCustomer, msg, err := card.CreateCustomer(data.PaymentMethod, data.Email)
 	if err != nil {
 		app.errorLog.Println(err)
-		return
+		okay = false
 	}
 
-	subscriptionID, err := card.SubscribeToPlan(stripeCustomer, data.Plan, data.Email, data.LastFour, "")
-	if err != nil {
-		app.errorLog.Println(err)
-		return
+	if okay {
+		subscription, err = card.SubscribeToPlan(stripeCustomer, data.Plan, data.Email, data.LastFour, "")
+		if err != nil {
+			app.errorLog.Println(err)
+			okay = false
+		}
+
+		app.infoLog.Println("subscription id is", subscription.ID)
 	}
-
-	app.infoLog.Println("subscription id is", subscriptionID)
-
-	okay := true
 
 	resp := jsonResponse{
 		OK:      okay,
