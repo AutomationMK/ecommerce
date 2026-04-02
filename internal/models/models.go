@@ -47,14 +47,15 @@ func (m *DBModel) GetWidget(id int) (Widget, error) {
 
 	query := `
 		SELECT id, name, description, inventory_level, price, image,
-			created_at, updated_at
+			is_recurring, plan_id, created_at, updated_at
 		FROM widgets
 		WHERE id = $1
 	`
 	row := m.DB.QueryRow(ctx, query, id)
 	err := row.Scan(&widget.ID, &widget.Name, &widget.Description,
 		&widget.InventoryLevel, &widget.Price, &widget.Image,
-		&widget.CreatedAt, &widget.UpdatedAt)
+		&widget.IsRecurring, &widget.PlanID, &widget.CreatedAt,
+		&widget.UpdatedAt)
 	if err != nil {
 		return widget, err
 	}
