@@ -156,6 +156,15 @@ Bronze Plan
                 email: document.getElementById("cardholder-email").value,
                 last_four: result.paymentMethod.card.last4,
             };
+
+            const requestOptions = {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            };
         }
     }
 
