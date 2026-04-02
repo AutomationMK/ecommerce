@@ -17,7 +17,7 @@ Bronze Plan
 
             <div class="hidden text-center px-4 py-2 rounded-lg" id="card-messages"></div>
 
-            <input type="hidden" name="product_id" value="{{$widget.ID}}">
+            <input type="hidden" name="product_id" id="product_id" value="{{$widget.ID}}">
             <input type="hidden" name="amount" id="amount" value="{{$widget.Price}}">
 
             <h3 class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50 text-center">
@@ -155,6 +155,13 @@ Bronze Plan
                 payment_method: result.paymentMethod.id,
                 email: document.getElementById("cardholder-email").value,
                 last_four: result.paymentMethod.card.last4,
+                product_id: document.getElementById("product_id").value,
+                card_brand: result.paymentMethod.card.brand,
+                expiry_month: result.paymentMethod.card.exp_month,
+                expiry_year: result.paymentMethod.card.exp_year,
+                first_name: document.getElementById("first-name").value,
+                last_name: document.getElementById("last-name").value,
+                amount: document.getElementById("amount").value,
             };
 
             const requestOptions = {
