@@ -165,6 +165,15 @@ Bronze Plan
                 },
                 body: JSON.stringify(payload),
             };
+
+            fetch("{{.API}}/api/create-customer-and-subscribe-to-plan", requestOptions)
+                .then(response => response.json())
+                .then(function (data) {
+                    console.log(data);
+                    processing.classList.remove("hidden")
+                    // set hidden vars
+                    // submit form
+                })
         }
     }
 
