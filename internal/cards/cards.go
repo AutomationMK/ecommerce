@@ -114,7 +114,7 @@ func (c *Card) CreateCustomer(pm, email string) (*stripe.Customer, string, error
 	if err != nil {
 		msg := ""
 		if stripeErr, ok := err.(*stripe.Error); ok {
-			msg = cardErrorMessage(stripeErr.code)
+			msg = cardErrorMessage(stripeErr.Code)
 		}
 		return nil, msg, err
 	}
