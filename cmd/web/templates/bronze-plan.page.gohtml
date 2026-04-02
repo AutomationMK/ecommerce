@@ -150,7 +150,12 @@ Bronze Plan
             showCardError(result.error.message);
         } else {
             // create a customer and subscribe to plan
-
+            let payload = {
+                plan: '{{$widget.PlanID}}',
+                payment_method: result.payment_method.id,
+                email: document.getElementById("cardholder-email").value,
+                last_four: result.paymentMethod.card.last4,
+            };
         }
     }
 
