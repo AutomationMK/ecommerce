@@ -1,11 +1,11 @@
 package cards
 
 import (
-	"github.com/stripe/stripe-go/customer"
-	"github.com/stripe/stripe-go/sub"
 	"github.com/stripe/stripe-go/v84"
+	"github.com/stripe/stripe-go/v84/customer"
 	"github.com/stripe/stripe-go/v84/paymentintent"
 	"github.com/stripe/stripe-go/v84/paymentmethod"
+	"github.com/stripe/stripe-go/v84/subscription"
 )
 
 // Card holds card data needed for stripe
@@ -91,7 +91,7 @@ func (c *Card) SubscribeToPlan(cust *stripe.Customer, plan, email, last4, cardTy
 	params.AddMetadata("last_four", last4)
 	params.AddMetadata("card_type", cardType)
 	params.AddExpand("latest_invoice.payment_intent")
-	subscription, err := sub.New(params)
+	subscription, err := subscription.New(params)
 	if err != nil {
 		return "", err
 	}
