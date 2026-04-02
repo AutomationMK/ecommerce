@@ -1,0 +1,187 @@
+{{template "base" .}}
+
+{{define "title"}}
+Bronze Plan
+{{end}}
+
+{{define "content"}}
+{{$widget := index .Data "widget"}}
+<section class="container mx-auto px-4">
+    <section class="grid gap-x-3 gap-y-4 xl:grid-cols-2 py-10">
+        <h2 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center text-blue-500 text-bold xl:col-span-full">
+            Subscription</h2>
+        <hr class="xl:col-span-full border-blue-500">
+        <form action="/payment-succeded" method="post" name="charge_form" id="charge_form"
+            class="charge-form grid gap-x-3 gap-y-5 bg-blue-500 rounded-lg px-4 py-6 max-w-4xl w-full justify-self-center"
+            autocomplete="off" novalidate="">
+
+            <div class="hidden text-center px-4 py-2 rounded-lg" id="card-messages"></div>
+
+            <input type="hidden" name="product_id" value="{{$widget.ID}}">
+            <input type="hidden" name="amount" id="amount" value="{{$widget.Price}}">
+
+            <h3 class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50 text-center">
+                {{$widget.Name}}:
+                {{printCurrency $widget.Price}}
+            </h3>
+            <p class="lg:text-lg xl:text-xl text-blue-50 text-center">{{$widget.Description}}</p>
+            <hr class="border-white">
+
+            <div class="flex flex-col gap-2">
+                <label for="first-name" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">First
+                    Name</label>
+                <input type="text" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="first-name" name="first_name" required="" autocomplete="first-name-new">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="last-name" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">Last
+                    Name</label>
+                <input type="text" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="last-name" name="last_name" required="" autocomplete="last-name-new">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="cardholder-name" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">Name On
+                    Card</label>
+                <input type="text" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="cardholder-name" name="cardholder_name" required="" autocomplete="cardholder-name-new">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="cardholder-email"
+                    class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">Cardholder
+                    Email</label>
+                <input type="email" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="cardholder-email" name="cardholder_email" required="" autocomplete="cardholder-email-new">
+            </div>
+
+            <div class="flex flex-col">
+                <label for="card-element" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50 mb-2">Credit
+                    Card</label>
+                <div id="card-element"
+                    class="px-4 py-2 z-10 border-3 border-blue-200 bg-white text-blue-800 rounded-lg">
+                </div>
+                <div class="text-center hidden font-bold text-red-800 bg-red-300 pt-4 pb-2 rounded-b-lg -translate-y-2"
+                    id="card-errors" role="alert">
+                </div>
+                <div class="text-center hidden border-2 border-green-300" id="card-success" role="alert"></div>
+            </div>
+
+            <a href="javascript:void(0)" id="pay-button"
+                class="text-white bg-blue-900 w-fit lg:col-span-full justify-self-center font-bold md:text-lg lg:text-xl xl:text-2xl rounded-lg px-4 py-2 transition hover:bg-white hover:text-blue-500"
+                onclick="val()">Pay {{printCurrency $widget.Price}}/month</a>
+
+            <div id="processing-payment" class="flex justify-center hidden" role="status">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-8 animate-spin text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+                <span class="hidden">Loading...</span>
+            </div>
+
+            <input type="hidden" name="payment_intent" id="payment_intent">
+            <input type="hidden" name="payment_method" id="payment_method">
+            <input type="hidden" name="payment_amount" id="payment_amount">
+            <input type="hidden" name="payment_currency" id="payment_currency">
+        </form>
+    </section>
+</section>
+{{end}}
+
+{{define "js"}}
+{{$widget := index .Data "widget"}}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    let card;
+    let stripe;
+    const cardMessages = document.getElementById("card-messages");
+    const payButton = document.getElementById("pay-button");
+    const processing = document.getElementById("processing-payment");
+
+    stripe = Stripe('{{.StripePublishableKey}}')
+
+    function hidePayButton() {
+        payButton.classList.add("hidden");
+        processing.classList.remove("hidden")
+    }
+
+    function showPayButtons() {
+        payButton.classList.remove("hidden");
+        processing.classList.add("hidden")
+    }
+
+    function showCardError(msg) {
+        cardMessages.classList.remove("bg-green-300", "text-green-800", "hidden");
+        cardMessages.classList.add("bg-red-300", "text-red-800");
+        cardMessages.innerText = msg;
+    }
+
+    function showCardSuccess() {
+        cardMessages.classList.remove("bg-red-300", "text-red-800", "hidden");
+        cardMessages.classList.add("bg-green-300", "text-green-800");
+        cardMessages.innerText = "Transaction successful";
+    }
+
+    function val() {
+        let form = document.getElementById("charge_form");
+        if (form.checkValidity() === false) {
+            this.event.preventDefault();
+            this.event.stopPropagation();
+            form.classList.add("shadow-md", "shadow-red-500");
+            return;
+        }
+        hidePayButton();
+
+        let amountToCharge = document.getElementById("amount").value;
+
+        stripe.createPaymentMethod({
+            type: 'card',
+            card: card,
+            billing_details: {
+                email: document.getElementById("cardholder-email").value,
+            },
+        }).then(stripePaymentMethodHandler);
+    }
+
+    function stripePaymentMethodHandler(result) {
+        if (result.error) {
+            showCardError(result.error.message);
+        } else {
+            // create a customer and subscribe to plan
+
+        }
+    }
+
+    (function () {
+        // create stripe & elements
+        const elements = stripe.elements();
+        const style = {
+            base: {
+                fontSize: '16px',
+                lineHeight: '24px',
+            }
+        };
+
+        // create card entry
+        card = elements.create('card', {
+            style: style,
+            hidePostalCode: true,
+        });
+        card.mount("#card-element");
+
+        // check for input errors
+        card.addEventListener('change', function (event) {
+            var displayError = document.getElementById("card-errors");
+            if (event.error) {
+                displayError.classList.remove('hidden');
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.classList.add('hidden');
+                displayError.textContent = '';
+            }
+        })
+    })();
+</script>
+{{end}}
