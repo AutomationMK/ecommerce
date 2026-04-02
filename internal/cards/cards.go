@@ -1,6 +1,7 @@
 package cards
 
 import (
+	"github.com/stripe/stripe-go/customer"
 	"github.com/stripe/stripe-go/v84"
 	"github.com/stripe/stripe-go/v84/paymentintent"
 	"github.com/stripe/stripe-go/v84/paymentmethod"
@@ -72,6 +73,28 @@ func (c *Card) RetrievePaymentIntent(id string) (*stripe.PaymentIntent, error) {
 	}
 
 	return pi, nil
+}
+
+// CreateCustomer creates a stripe customer to use for subscriptions
+func (c *Card) CreateCustomer(pm, email string) (*stripe.Customer, string, error) {
+	stripe.Key = c.Secret
+	customerParams := &stripe.CustomerParams{
+		PaymentMethod: stripe.String(pm),
+		Email:         stripe.String(email),
+		InvoiceSettings: &stripe.CustomerInvoiceSettingsParams{
+			DefaultPaymentMethod: stripe.String(pm),
+		},
+	}
+
+	cust, err := customer.New(customerParams)
+	if err != nil {
+		msg := ""
+		if stripeErr, ok := err.(*stripe.Error); ok {
+			msg = cardErrorMessage(stripeErr.code)
+		}
+		return nil, msg, err
+	}
+	return cust, "", nil
 }
 
 // cardErrorMessage returns human readable versions of card error messages
