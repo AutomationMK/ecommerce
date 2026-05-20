@@ -59,6 +59,8 @@ Max Kranker
   - Setup API Handler CreateCustomerAndSubcribe
 - 0.3.0
   - Add BronzePlanReciept Handler
+- 0.4.0
+  - Add /receipt/bronze Route
 
 </details>
 
