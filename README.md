@@ -50,8 +50,15 @@ Max Kranker
 
 ## Version History
 
-* 0.1.0
-  * Initial Pre-Release
+<details>
+<summary>Click To Expand Releases</summary>
+
+- 0.1.0
+  - Change main header title
+- 0.2.0
+  - Setup API Handler CreateCustomerAndSubcribe
+
+</details>
 
 ## License
 
