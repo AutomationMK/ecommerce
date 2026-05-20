@@ -57,6 +57,8 @@ Max Kranker
   - Change main header title
 - 0.2.0
   - Setup API Handler CreateCustomerAndSubcribe
+- 0.3.0
+  - Add BronzePlanReciept Handler
 
 </details>
 
