@@ -63,6 +63,8 @@ Max Kranker
   - Add /receipt/bronze Route
 - 0.5.0
   - Add JS Session Storage and Redirect To /receipt/bronze
+- 0.6.0
+  - Add Initial receipt-plan Template Page
 
 </details>
 
