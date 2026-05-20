@@ -61,6 +61,8 @@ Max Kranker
   - Add BronzePlanReciept Handler
 - 0.4.0
   - Add /receipt/bronze Route
+- 0.5.0
+  - Add JS Session Storage and Redirect To /receipt/bronze
 
 </details>
 
