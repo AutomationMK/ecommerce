@@ -81,6 +81,8 @@ Max Kranker
   - Add badRequest API Helper Function
 - 0.13.1
   - Remove JS hidePayButton() and amountToCharge From Template
+- 0.14.0
+  - Add Initial CreateAuthToken API Handler
 
 </details>
 
