@@ -75,6 +75,8 @@ Max Kranker
   - Add Login Link To Nav Of Base Layout
 - 0.11.0
   - Add Test Javascript AJAX API Fetch For Authentication
+- 0.12.0
+  - Add readJSON API Helper Function
 
 </details>
 
