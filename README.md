@@ -65,6 +65,8 @@ Max Kranker
   - Add JS Session Storage and Redirect To /receipt/bronze
 - 0.6.0
   - Add Initial receipt-plan Template Page
+- 0.7.0
+  - Add LoginPage Handler
 
 </details>
 
