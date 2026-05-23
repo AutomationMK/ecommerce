@@ -83,6 +83,8 @@ Max Kranker
   - Remove JS hidePayButton() and amountToCharge From Template
 - 0.14.0
   - Add Initial CreateAuthToken API Handler
+- 0.15.0
+  - Add /api/authenticate Route
 
 </details>
 
