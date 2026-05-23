@@ -67,6 +67,8 @@ Max Kranker
   - Add Initial receipt-plan Template Page
 - 0.7.0
   - Add LoginPage Handler
+- 0.8.0
+  - Add /login Route
 
 </details>
 
