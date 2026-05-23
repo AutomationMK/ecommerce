@@ -79,6 +79,8 @@ Max Kranker
   - Add readJSON API Helper Function
 - 0.13.0
   - Add badRequest API Helper Function
+- 0.13.1
+  - Remove JS hidePayButton() and amountToCharge From Template
 
 </details>
 
