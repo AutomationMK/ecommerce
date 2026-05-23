@@ -69,6 +69,8 @@ Max Kranker
   - Add LoginPage Handler
 - 0.8.0
   - Add /login Route
+- 0.9.0
+  - Add Initial Login Page Template
 
 </details>
 

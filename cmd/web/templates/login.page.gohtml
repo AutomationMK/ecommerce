@@ -1,0 +1,39 @@
+{{template "base" .}}
+
+{{define "title"}}
+Login
+{{end}}
+
+{{define "content"}}
+<section class="container mx-auto px-4">
+    <section class="grid gap-x-3 gap-y-4 xl:grid-cols-2 py-10">
+        <h2 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center text-blue-500 text-bold xl:col-span-full">
+            Login</h2>
+        <hr class="xl:col-span-full border-blue-500">
+        <form action="/login" method="post" name="login_form" id="login_form"
+            class="grid gap-x-3 gap-y-5 bg-blue-500 rounded-lg px-4 py-6 max-w-4xl w-full justify-self-center"
+            autocomplete="off" novalidate="">
+
+            <div class="hidden text-center px-4 py-2 rounded-lg" id="card-messages"></div>
+
+            <div class="flex flex-col gap-2">
+                <label for="email" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">
+                    Email</label>
+                <input type="email" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="email" name="email" required="" autocomplete="email-new">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="password" class="md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-50">
+                    Password</label>
+                <input type="password" class="px-4 py-2 border-3 border-blue-200 bg-white text-blue-800 rounded-lg"
+                    id="password" name="password" required="" autocomplete="password-new">
+            </div>
+
+            <a href="javascript:void(0)"
+                class="text-white bg-blue-900 w-fit lg:col-span-full justify-self-center font-bold md:text-lg lg:text-xl xl:text-2xl rounded-lg px-4 py-2 transition hover:bg-white hover:text-blue-500"
+                onclick="val()">Login Now</a>
+        </form>
+    </section>
+</section>
+{{end}}
