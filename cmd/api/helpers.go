@@ -26,3 +26,23 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, data an
 
 	return nil
 }
+
+// badRequest takes an error on the backend and writes JSON error message to the response writer
+func (app *application) badRequest(w http.ResponseWriter, r *http.Request, err error) error {
+	var payload struct {
+		Error   bool   `json:"error"`
+		Message string `json:"messoge"`
+	}
+
+	payload.Error = true
+	payload.Message = err.Error()
+
+	out, err := json.MarshalIndent(payload, "", "\t")
+	if err != nil {
+		return err
+	}
+
+	w.Header().Set("Content-type", "application/json")
+	w.Write(out)
+	return nil
+}

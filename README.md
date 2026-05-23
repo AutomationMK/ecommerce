@@ -77,6 +77,8 @@ Max Kranker
   - Add Test Javascript AJAX API Fetch For Authentication
 - 0.12.0
   - Add readJSON API Helper Function
+- 0.13.0
+  - Add badRequest API Helper Function
 
 </details>
 
