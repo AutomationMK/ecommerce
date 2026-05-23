@@ -73,6 +73,8 @@ Max Kranker
   - Add Initial Login Page Template
 - 0.10.0
   - Add Login Link To Nav Of Base Layout
+- 0.11.0
+  - Add Test Javascript AJAX API Fetch For Authentication
 
 </details>
 
