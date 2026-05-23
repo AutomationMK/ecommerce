@@ -71,6 +71,8 @@ Max Kranker
   - Add /login Route
 - 0.9.0
   - Add Initial Login Page Template
+- 0.10.0
+  - Add Login Link To Nav Of Base Layout
 
 </details>
 
