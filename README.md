@@ -111,6 +111,8 @@ Max Kranker
   - Add Token Generation and Token To JSON Response In CreateAuthToken
 - 0.25.0
   - Add Database Migrations To Create Tokens Table
+- 0.26.0
+  - Add InsertToken DBModel Method
 
 </details>
 

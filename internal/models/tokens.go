@@ -1,6 +1,7 @@
 package models
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/base32"
@@ -38,4 +39,27 @@ func GenerateToken(userID int, ttl time.Duration, scope string) (*Token, error) 
 	hash := sha256.Sum256([]byte(token.PlainText))
 	token.Hash = hash[:]
 	return token, nil
+}
+
+// InsertToken a new token into the database
+func (m *DBModel) InsertToken(t *Token, u User) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	stmt := `
+		INSERT INTO tokens (user_id, name, email, token_hash, created_at, updated_at)
+		VALUES ($1, $2, $3, $4, $5, $6)`
+	_, err := m.DB.Exec(ctx, stmt,
+		u.ID,
+		u.LastName,
+		u.Email,
+		t.Hash,
+		time.Now(),
+		time.Now(),
+	)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
