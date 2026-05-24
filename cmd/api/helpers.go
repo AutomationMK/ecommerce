@@ -67,3 +67,20 @@ func (app *application) writeJSON(w http.ResponseWriter, status int, data any, h
 
 	return nil
 }
+
+// invalidCredentials returns a JSON response with an invalid credentials messagen and unauthorized status
+func (app *application) invalidCredentials(w http.ResponseWriter) error {
+	var payload struct {
+		Error   bool   `json:"error"`
+		Message string `json:"message"`
+	}
+
+	payload.Error = true
+	payload.Message = "Invalid authentication credentials"
+
+	err := app.writeJSON(w, http.StatusUnauthorized, payload)
+	if err != nil {
+		return err
+	}
+	return nil
+}
