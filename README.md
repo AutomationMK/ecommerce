@@ -119,6 +119,8 @@ Max Kranker
   - Update InsertToken To Delete Existing Tokens
 - 0.29.0
   - Add showSuccess and showError JS Functions and Add Data To Storage
+- 0.30.0
+  - Add Login JS Logic To Base Layout
 
 </details>
 
