@@ -117,6 +117,8 @@ Max Kranker
   - Add InsertToken DBModel Method To CreateAuthToken
 - 0.28.0
   - Update InsertToken To Delete Existing Tokens
+- 0.29.0
+  - Add showSuccess and showError JS Functions and Add Data To Storage
 
 </details>
 
