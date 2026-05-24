@@ -5,6 +5,8 @@ import (
 	"errors"
 	"io"
 	"net/http"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 // readJSON decodes JSON data in the request body and writes to the data variable
@@ -83,4 +85,19 @@ func (app *application) invalidCredentials(w http.ResponseWriter) error {
 		return err
 	}
 	return nil
+}
+
+// passwordMatches checks if the hashed input password matches the hashed password in the database
+func (app *application) passwordMatches(hash, password string) (bool, error) {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	if err != nil {
+		switch {
+		case errors.Is(err, bcrypt.ErrMismatchedHashAndPassword):
+			return false, nil
+		default:
+			return false, err
+		}
+	}
+
+	return true, nil
 }

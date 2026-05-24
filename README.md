@@ -95,6 +95,8 @@ Max Kranker
   - Add GetUserByEmail DBModel Method
 - 0.19.0
   - Add invalidCredentials API Helper Function
+- 0.20.0
+  - Add passwordMatches API Helper Function
 
 </details>
 
