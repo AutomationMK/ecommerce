@@ -87,6 +87,8 @@ Max Kranker
   - Add /api/authenticate Route
 - 0.16.0
   - Add writeJSON API Helper Function
+- 0.16.1
+  - Fix badRequest To Set Header Name As "Content-Type"
 
 </details>
 

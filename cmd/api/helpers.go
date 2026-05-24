@@ -42,7 +42,7 @@ func (app *application) badRequest(w http.ResponseWriter, r *http.Request, err e
 		return err
 	}
 
-	w.Header().Set("Content-type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(out)
 	return nil
 }
