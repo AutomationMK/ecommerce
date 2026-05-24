@@ -109,6 +109,8 @@ Max Kranker
   - Fix 0.23.0 Version In README.md File
 - 0.24.0
   - Add Token Generation and Token To JSON Response In CreateAuthToken
+- 0.25.0
+  - Add Database Migrations To Create Tokens Table
 
 </details>
 

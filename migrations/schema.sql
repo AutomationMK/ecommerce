@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict pcOjXDuDxNIFhTHY0z1qYILMiKwBkDe9A94bnI4LSEqXbr73b0QnRHGy4wjpJrh
+\restrict 3rF4oKktFpYNPLL8FEq2ecF6jRGgcd4EHbGp9XZ0FEs4enqQCxwuLDeHp3ho62A
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -147,6 +147,45 @@ ALTER SEQUENCE public.statuses_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.statuses_id_seq OWNED BY public.statuses.id;
+
+
+--
+-- Name: tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tokens (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    token_hash bytea NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.tokens OWNER TO postgres;
+
+--
+-- Name: tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tokens_id_seq OWNED BY public.tokens.id;
 
 
 --
@@ -332,6 +371,13 @@ ALTER TABLE ONLY public.statuses ALTER COLUMN id SET DEFAULT nextval('public.sta
 
 
 --
+-- Name: tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens ALTER COLUMN id SET DEFAULT nextval('public.tokens_id_seq'::regclass);
+
+
+--
 -- Name: transaction_statuses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -389,6 +435,14 @@ ALTER TABLE ONLY public.schema_migration
 
 ALTER TABLE ONLY public.statuses
     ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tokens tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens
+    ADD CONSTRAINT tokens_pkey PRIMARY KEY (id);
 
 
 --
@@ -474,5 +528,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pcOjXDuDxNIFhTHY0z1qYILMiKwBkDe9A94bnI4LSEqXbr73b0QnRHGy4wjpJrh
+\unrestrict 3rF4oKktFpYNPLL8FEq2ecF6jRGgcd4EHbGp9XZ0FEs4enqQCxwuLDeHp3ho62A
 
