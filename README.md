@@ -103,8 +103,10 @@ Max Kranker
   - Add User Database Query and Password Validation To CreateAuthToken
 - 0.22.0
   - Add bcrypt Golang Module
-- 0.22.0
+- 0.23.0
   - Add Token Type and GenerateToken Function For Authentication
+- 0.23.1
+  - Fix 0.23.0 Version In README.md File
 
 </details>
 
