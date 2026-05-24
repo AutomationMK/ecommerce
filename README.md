@@ -101,6 +101,8 @@ Max Kranker
   - Fix badRequest To Set Header To Status 400
 - 0.21.0
   - Add User Database Query and Password Validation To CreateAuthToken
+- 0.22.0
+  - Add bcrypt Golang Module
 
 </details>
 
