@@ -107,6 +107,8 @@ Max Kranker
   - Add Token Type and GenerateToken Function For Authentication
 - 0.23.1
   - Fix 0.23.0 Version In README.md File
+- 0.24.0
+  - Add Token Generation and Token To JSON Response In CreateAuthToken
 
 </details>
 
