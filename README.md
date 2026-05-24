@@ -85,6 +85,8 @@ Max Kranker
   - Add Initial CreateAuthToken API Handler
 - 0.15.0
   - Add /api/authenticate Route
+- 0.16.0
+  - Add writeJSON API Helper Function
 
 </details>
 
