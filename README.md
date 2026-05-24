@@ -89,6 +89,8 @@ Max Kranker
   - Add writeJSON API Helper Function
 - 0.16.1
   - Fix badRequest To Set Header Name As "Content-Type"
+- 0.17.0
+  - Change CreateAuthToken To Use writeJSON Helper Function
 
 </details>
 
