@@ -99,6 +99,8 @@ Max Kranker
   - Add passwordMatches API Helper Function
 - 0.20.1
   - Fix badRequest To Set Header To Status 400
+- 0.21.0
+  - Add User Database Query and Password Validation To CreateAuthToken
 
 </details>
 
