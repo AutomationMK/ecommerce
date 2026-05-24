@@ -91,6 +91,8 @@ Max Kranker
   - Fix badRequest To Set Header Name As "Content-Type"
 - 0.17.0
   - Change CreateAuthToken To Use writeJSON Helper Function
+- 0.18.0
+  - Add GetUserByEmail DBModel Method
 
 </details>
 

@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"strings"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -221,4 +222,33 @@ func (m *DBModel) InsertCustomer(cus Customer) (int, error) {
 	}
 
 	return newID, nil
+}
+
+// GetUserByEmail gets a user by email address
+func (m *DBModel) GetUserByEmail(email string) (User, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	email = strings.ToLower(email)
+	var u User
+
+	row := m.DB.QueryRow(ctx, `
+		SELECT id, first_name, last_name, email, password,
+			created_at, updated_at
+		FROM users
+		WHERE email = $1`, email)
+	err := row.Scan(
+		&u.ID,
+		&u.FirstName,
+		&u.LastName,
+		&u.Email,
+		&u.Password,
+		&u.CreatedAt,
+		&u.UpdatedAt,
+	)
+	if err != nil {
+		return u, err
+	}
+
+	return u, nil
 }
