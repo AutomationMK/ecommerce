@@ -115,6 +115,8 @@ Max Kranker
   - Add InsertToken DBModel Method
 - 0.27.0
   - Add InsertToken DBModel Method To CreateAuthToken
+- 0.28.0
+  - Update InsertToken To Delete Existing Tokens
 
 </details>
 
