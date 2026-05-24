@@ -93,6 +93,8 @@ Max Kranker
   - Change CreateAuthToken To Use writeJSON Helper Function
 - 0.18.0
   - Add GetUserByEmail DBModel Method
+- 0.19.0
+  - Add invalidCredentials API Helper Function
 
 </details>
 
