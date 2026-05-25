@@ -125,6 +125,8 @@ Max Kranker
   - Redirect To Home Page After Successfull Login
 - 0.32.0
   - Add Initial CheckAuthentication API Handler
+- 0.33.0
+  - Add /api/is-authenticated API Route
 
 </details>
 
