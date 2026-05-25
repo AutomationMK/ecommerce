@@ -129,6 +129,8 @@ Max Kranker
   - Add /api/is-authenticated API Route
 - 0.34.0
   - Add Initial checkAuth JS Function To Base Layout
+- 0.35.0
+  - Add checkAuth JS Function To Terminal Template Page
 
 </details>
 
