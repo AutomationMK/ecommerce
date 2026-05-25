@@ -127,6 +127,8 @@ Max Kranker
   - Add Initial CheckAuthentication API Handler
 - 0.33.0
   - Add /api/is-authenticated API Route
+- 0.34.0
+  - Add Initial checkAuth JS Function To Base Layout
 
 </details>
 
