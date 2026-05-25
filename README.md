@@ -121,6 +121,8 @@ Max Kranker
   - Add showSuccess and showError JS Functions and Add Data To Storage
 - 0.30.0
   - Add Login JS Logic To Base Layout
+- 0.31.0
+  - Redirect To Home Page After Successfull Login
 
 </details>
 
