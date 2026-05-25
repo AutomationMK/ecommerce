@@ -139,6 +139,8 @@ Max Kranker
   - Update authenticateToken To Use GetUserForToken
 - 0.39.0
   - Migrate To Add Expiry Column To Tokens Table
+- 0.40.0
+  - Update InsertToken and GetUserForToken To Use Expiry
 
 </details>
 

@@ -55,13 +55,14 @@ func (m *DBModel) InsertToken(t *Token, u User) error {
 	}
 
 	stmt = `
-		INSERT INTO tokens (user_id, name, email, token_hash, created_at, updated_at)
-		VALUES ($1, $2, $3, $4, $5, $6)`
+		INSERT INTO tokens (user_id, name, email, token_hash, expiry, created_at, updated_at)
+		VALUES ($1, $2, $3, $4, $5, $6, $7)`
 	_, err = m.DB.Exec(ctx, stmt,
 		u.ID,
 		u.LastName,
 		u.Email,
 		t.Hash,
+		t.Expiry,
 		time.Now(),
 		time.Now(),
 	)
@@ -79,17 +80,19 @@ func (m *DBModel) GetUserForToken(token string) (*User, error) {
 
 	tokenHash := sha256.Sum256([]byte(token))
 	var user User
+	var expiry time.Time
 
 	query := `
-		SELECT u.id, u.first_name, u.last_name, u.Email
+		SELECT u.id, u.first_name, u.last_name, u.email, t.expiry
 		FROM users AS u
 		INNER JOIN tokens AS t ON (u.id = t.user_id)
-		WHERE t.token_hash = $1`
-	err := m.DB.QueryRow(ctx, query, tokenHash[:]).Scan(
+		WHERE t.token_hash = $1 AND t.expiry > $2`
+	err := m.DB.QueryRow(ctx, query, tokenHash[:], time.Now()).Scan(
 		&user.ID,
 		&user.FirstName,
 		&user.LastName,
 		&user.Email,
+		&expiry,
 	)
 	if err != nil {
 		log.Println(err)
