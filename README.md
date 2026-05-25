@@ -123,6 +123,8 @@ Max Kranker
   - Add Login JS Logic To Base Layout
 - 0.31.0
   - Redirect To Home Page After Successfull Login
+- 0.32.0
+  - Add Initial CheckAuthentication API Handler
 
 </details>
 
