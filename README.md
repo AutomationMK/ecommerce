@@ -135,6 +135,8 @@ Max Kranker
   - Add authenticateToken Helper Function and Update CheckAuthentication
 - 0.37.0
   - Add GetUserForToken DBModel Method
+- 0.38.0
+  - Update authenticateToken To Use GetUserForToken
 
 </details>
 

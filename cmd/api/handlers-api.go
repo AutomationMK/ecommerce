@@ -317,8 +317,6 @@ func (app *application) CreateAuthToken(w http.ResponseWriter, r *http.Request) 
 // authenticateToken checks the validity of the Authorization Header
 // the user connected to the token gets returned
 func (app *application) authenticateToken(r *http.Request) (*models.User, error) {
-	var u models.User
-
 	authorizationHeader := r.Header.Get("Authorization")
 	if authorizationHeader == "" {
 		return nil, errors.New("no authorization header received")
@@ -335,8 +333,12 @@ func (app *application) authenticateToken(r *http.Request) (*models.User, error)
 	}
 
 	// get the user from the tokens table
+	user, err := app.DB.GetUserForToken(token)
+	if err != nil {
+		return nil, errors.New("no matching user found")
+	}
 
-	return &u, nil
+	return user, nil
 }
 
 // CheckAuthentication checks if a request is authenticated
