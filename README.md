@@ -131,6 +131,8 @@ Max Kranker
   - Add Initial checkAuth JS Function To Base Layout
 - 0.35.0
   - Add checkAuth JS Function To Terminal Template Page
+- 0.36.0
+  - Add authenticateToken Helper Function and Update CheckAuthentication
 
 </details>
 
