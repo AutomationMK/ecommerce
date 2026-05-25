@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/base32"
+	"log"
 	"time"
 )
 
@@ -69,4 +70,31 @@ func (m *DBModel) InsertToken(t *Token, u User) error {
 	}
 
 	return nil
+}
+
+// GetUserForToken retreives a user from the database that is connected to a token hash
+func (m *DBModel) GetUserForToken(token string) (*User, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	tokenHash := sha256.Sum256([]byte(token))
+	var user User
+
+	query := `
+		SELECT u.id, u.first_name, u.last_name, u.Email
+		FROM users AS u
+		INNER JOIN tokens AS t ON (u.id = t.user_id)
+		WHERE t.token_hash = $1`
+	err := m.DB.QueryRow(ctx, query, tokenHash[:]).Scan(
+		&user.ID,
+		&user.FirstName,
+		&user.LastName,
+		&user.Email,
+	)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+
+	return &user, nil
 }

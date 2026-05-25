@@ -133,6 +133,8 @@ Max Kranker
   - Add checkAuth JS Function To Terminal Template Page
 - 0.36.0
   - Add authenticateToken Helper Function and Update CheckAuthentication
+- 0.37.0
+  - Add GetUserForToken DBModel Method
 
 </details>
 
