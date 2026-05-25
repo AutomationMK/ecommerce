@@ -137,6 +137,8 @@ Max Kranker
   - Add GetUserForToken DBModel Method
 - 0.38.0
   - Update authenticateToken To Use GetUserForToken
+- 0.39.0
+  - Migrate To Add Expiry Column To Tokens Table
 
 </details>
 

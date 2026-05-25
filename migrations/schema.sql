@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 3rF4oKktFpYNPLL8FEq2ecF6jRGgcd4EHbGp9XZ0FEs4enqQCxwuLDeHp3ho62A
+\restrict A21zBo3GLAWasAzpakEQHrlwSBnF78Tmn2prjrnCOeFOtZF0rckzNtRmHazEhI5
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.3
@@ -160,7 +160,8 @@ CREATE TABLE public.tokens (
     email character varying(255) NOT NULL,
     token_hash bytea NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
-    updated_at timestamp without time zone DEFAULT now() NOT NULL
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    expiry timestamp without time zone NOT NULL
 );
 
 
@@ -528,5 +529,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 3rF4oKktFpYNPLL8FEq2ecF6jRGgcd4EHbGp9XZ0FEs4enqQCxwuLDeHp3ho62A
+\unrestrict A21zBo3GLAWasAzpakEQHrlwSBnF78Tmn2prjrnCOeFOtZF0rckzNtRmHazEhI5
 
