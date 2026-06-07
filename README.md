@@ -149,6 +149,8 @@ Max Kranker
   - Remove stripe-js Partial From VirtualTerminal Handler
 - 0.44.0
   - Add /api/admin Routes
+- 0.45.0
+  - Replace stripe-js Partial With Custom Script and Add Receipt Section
 
 </details>
 

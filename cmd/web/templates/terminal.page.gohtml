@@ -11,7 +11,7 @@ Virtual Terminal
     <hr class="xl:col-span-full border-blue-500">
 
     <section class="flex justify-center">
-        <form action="/virtual-terminal-payment-succeeded" method="post" name="charge_form" id="charge_form"
+        <form action="#" method="post" name="charge_form" id="charge_form"
             class="charge-form grid gap-x-3 gap-y-5 bg-blue-500 mt-4 rounded-lg px-4 py-6 max-w-4xl w-full"
             autocomplete="off" novalidate="">
 
@@ -72,6 +72,22 @@ Virtual Terminal
         </form>
     </section>
 </section>
+
+<section class="container mx-auto px-4 py-10 hidden" id="receipt">
+    <section class="grid lg:grid-cols-2 gap-4 lg:gap-6">
+        <h3 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center text-blue-500 text-bold lg:col-span-full">
+            Reciept
+        </h3>
+        <hr class="lg:col-span-full border-blue-500">
+        <p class="xl:text-lg text-center text-blue-500">
+            <strong>Bank Return Code</strong>: <span id="bank-return-code"></span>
+        </p>
+        <a href="/virtual-terminal"
+            class="text-white bg-blue-900 w-fit justify-self-center font-bold md:text-lg lg:text-xl xl:text-2xl rounded-lg px-4 py-2 transition hover:bg-white hover:text-blue-500">
+            Charge Another Card
+        </a>
+    </section>
+</section>
 {{end}}
 
 {{define "js"}}
@@ -89,5 +105,161 @@ Virtual Terminal
         }
     });
 </script>
-{{template "stripe-js" .}}
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    let card;
+    let stripe;
+    const cardMessages = document.getElementById("card-messages");
+    const payButton = document.getElementById("pay-button");
+    const processing = document.getElementById("processing-payment");
+
+    stripe = Stripe('{{.StripePublishableKey}}')
+
+    function hidePayButton() {
+        payButton.classList.add("hidden");
+        processing.classList.remove("hidden")
+    }
+
+    function showPayButtons() {
+        payButton.classList.remove("hidden");
+        processing.classList.add("hidden")
+    }
+
+    function showCardError(msg) {
+        cardMessages.classList.remove("bg-green-300", "text-green-800", "hidden");
+        cardMessages.classList.add("bg-red-300", "text-red-800");
+        cardMessages.innerText = msg;
+    }
+
+    function showCardSuccess() {
+        cardMessages.classList.remove("bg-red-300", "text-red-800", "hidden");
+        cardMessages.classList.add("bg-green-300", "text-green-800");
+        cardMessages.innerText = "Transaction successful";
+    }
+
+    function val() {
+        let form = document.getElementById("charge_form");
+        if (form.checkValidity() === false) {
+            this.event.preventDefault();
+            this.event.stopPropagation();
+            form.classList.add("shadow-md", "shadow-red-500");
+            return;
+        }
+        hidePayButton();
+
+        let amountToCharge = document.getElementById("amount").value;
+
+        let payload = {
+            amount: amountToCharge,
+            currency: 'usd',
+        }
+
+        const requestOptions = {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        }
+
+        fetch("{{.API}}/api/payment-intent", requestOptions)
+            .then((response) => response.text())
+            .then((response) => {
+                let data;
+                try {
+                    data = JSON.parse(response);
+                    stripe.confirmCardPayment(data.client_secret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: document.getElementById("cardholder-name").value,
+                            },
+                        },
+                    }).then((result) => {
+                        if (result.error) {
+                            // card declined or something went wrong with the card
+                            showCardError(result.error.message);
+                            showPayButtons();
+                        } else if (result.paymentIntent) {
+                            if (result.paymentIntent.status === "succeeded") {
+                                // we have charged the card
+                                processing.classList.add("d-none");
+                                showCardSuccess();
+                                saveTransaction(result);
+                            }
+                        }
+                    })
+                } catch (err) {
+                    showCardError("Invalid response from payment gateway!");
+                    showPayButtons();
+                }
+            })
+    }
+
+    function saveTransaction(result) {
+        let payload = {
+            amount: parseInt(document.getElementById("amount").value, 10),
+            currency: result.paymentIntent.currency,
+            first_name: "",
+            last_name: "",
+            email: document.getElementById("cardholder-email").value,
+            payment_intent: result.paymentIntent.id,
+            payment_method: result.paymentIntent.payment_method,
+        }
+
+        let token = localStorage.getItem("token");
+
+        const requestOptions = {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+            },
+            body: JSON.stringify(payload),
+        }
+
+        fetch("{{.API}}/api/admin/virtual-terminal-succeeded", requestOptions)
+            .then(response => response.json())
+            .then(function (data) {
+                console.log(data);
+                processing.classList.add("hidden");
+                showCardSuccess();
+                document.querySelector("#bank-return-code").innerHTML = data.bank_return_code;
+                document.querySelector("#receipt").classList.remove("hidden");
+            })
+    }
+
+    (function () {
+        // create stripe & elements
+        const elements = stripe.elements();
+        const style = {
+            base: {
+                fontSize: '16px',
+                lineHeight: '24px',
+            }
+        };
+
+        // create card entry
+        card = elements.create('card', {
+            style: style,
+            hidePostalCode: true,
+        });
+        card.mount("#card-element");
+
+        // check for input errors
+        card.addEventListener('change', function (event) {
+            var displayError = document.getElementById("card-errors");
+            if (event.error) {
+                displayError.classList.remove('hidden');
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.classList.add('hidden');
+                displayError.textContent = '';
+            }
+        })
+    })();
+</script>
 {{end}}
