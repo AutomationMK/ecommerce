@@ -147,6 +147,8 @@ Max Kranker
   - Add VirtualTerminalPaymentSucceeded API Handler
 - 0.43.0
   - Remove stripe-js Partial From VirtualTerminal Handler
+- 0.44.0
+  - Add /api/admin Routes
 
 </details>
 
