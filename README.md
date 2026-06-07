@@ -141,6 +141,8 @@ Max Kranker
   - Migrate To Add Expiry Column To Tokens Table
 - 0.40.0
   - Update InsertToken and GetUserForToken To Use Expiry
+- 0.41.0
+  - Add Auth API Middleware Function
 
 </details>
 
