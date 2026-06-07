@@ -145,6 +145,8 @@ Max Kranker
   - Add Auth API Middleware Function
 - 0.42.0
   - Add VirtualTerminalPaymentSucceeded API Handler
+- 0.43.0
+  - Remove stripe-js Partial From VirtualTerminal Handler
 
 </details>
 
