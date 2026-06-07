@@ -143,6 +143,8 @@ Max Kranker
   - Update InsertToken and GetUserForToken To Use Expiry
 - 0.41.0
   - Add Auth API Middleware Function
+- 0.42.0
+  - Add VirtualTerminalPaymentSucceeded API Handler
 
 </details>
 
