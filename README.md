@@ -151,6 +151,8 @@ Max Kranker
   - Add /api/admin Routes
 - 0.45.0
   - Replace stripe-js Partial With Custom Script and Add Receipt Section
+- 0.45.1
+  - Fix VirtualTerminalPaymentSucceeded To Have Payment Intent and Method
 
 </details>
 
