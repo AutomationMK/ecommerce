@@ -173,6 +173,8 @@ Max Kranker
   - Add Logount Frontend Handler
 - 0.53.0
   - Add /logout Route
+- 0.54.0
+  - Redirect To /logout In Base Layout JS Logout Function
 
 </details>
 
