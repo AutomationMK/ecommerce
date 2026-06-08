@@ -165,6 +165,8 @@ Max Kranker
   - Add Authenticate DBModel Method
 - 0.49.0
   - Add PostLoginPage Frontend Handler
+- 0.50.0
+  - Add /login Post Route
 
 </details>
 
