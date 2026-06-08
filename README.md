@@ -159,6 +159,8 @@ Max Kranker
   - Add /admin Routes Using Auth Middleware
 - 0.47.1
   - Fix Charge Another Card A Tag To Use /admin/virtual-terminal
+- 0.47.2
+  - Fix Virtual Terminal Base Nav A Tag To Use /admin/virtual-terminal
 
 </details>
 
