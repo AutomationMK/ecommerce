@@ -153,6 +153,8 @@ Max Kranker
   - Replace stripe-js Partial With Custom Script and Add Receipt Section
 - 0.45.1
   - Fix VirtualTerminalPaymentSucceeded To Have Payment Intent and Method
+- 0.46.0
+  - Add Auth Middleware For Frontend 
 
 </details>
 
