@@ -155,6 +155,8 @@ Max Kranker
   - Fix VirtualTerminalPaymentSucceeded To Have Payment Intent and Method
 - 0.46.0
   - Add Auth Middleware For Frontend 
+- 0.47.0
+  - Add /admin Routes Using Auth Middleware
 
 </details>
 
