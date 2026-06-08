@@ -161,6 +161,8 @@ Max Kranker
   - Fix Charge Another Card A Tag To Use /admin/virtual-terminal
 - 0.47.2
   - Fix Virtual Terminal Base Nav A Tag To Use /admin/virtual-terminal
+- 0.48.0
+  - Add Authenticate DBModel Method
 
 </details>
 
