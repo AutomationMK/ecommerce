@@ -181,6 +181,8 @@ Max Kranker
   - Add github.com/alexedwards/scs/pgxstore Module
 - 0.57.0
   - Change DBModel DB Object To Be *pgxpool.Pool Type
+- 0.57.1
+  - Fix conn.Close To Not Have Context As Argument In Backend
 
 </details>
 

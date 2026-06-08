@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"log"
@@ -73,7 +72,7 @@ func main() {
 	if err != nil {
 		errorLog.Fatal(err)
 	}
-	defer conn.Close(context.Background())
+	defer conn.Close()
 
 	app := &application{
 		config:   cfg,
