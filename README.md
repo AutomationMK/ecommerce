@@ -169,6 +169,8 @@ Max Kranker
   - Add /login Post Route
 - 0.51.0
   - Add JS login_form Submit For Authentication On Frontend
+- 0.52.0
+  - Add Logount Frontend Handler
 
 </details>
 

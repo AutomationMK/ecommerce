@@ -341,3 +341,18 @@ func (app *application) PostLoginPage(w http.ResponseWriter, r *http.Request) {
 	app.Session.Put(r.Context(), "userID", id)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+// Logout logs out a user and destroys a user session
+func (app *application) Logout(w http.ResponseWriter, r *http.Request) {
+	if err := app.Session.Destroy(r.Context()); err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	if err := app.Session.RenewToken(r.Context()); err != nil {
+		app.errorLog.Println(err)
+		return
+	}
+
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
+}
