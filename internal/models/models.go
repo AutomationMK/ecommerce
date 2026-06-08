@@ -6,13 +6,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"golang.org/x/crypto/bcrypt"
 )
 
 // DBModel is the type for database connection values
 type DBModel struct {
-	DB *pgx.Conn
+	DB *pgxpool.Pool
 }
 
 // Models is the wrapper for all models
@@ -21,7 +21,7 @@ type Models struct {
 }
 
 // NewModels returns a model type with pgx connection pool
-func NewModels(db *pgx.Conn) Models {
+func NewModels(db *pgxpool.Pool) Models {
 	return Models{
 		DB: DBModel{DB: db},
 	}

@@ -179,6 +179,8 @@ Max Kranker
   - Add sessions Table For SCS Session Storage
 - 0.56.0
   - Add github.com/alexedwards/scs/pgxstore Module
+- 0.57.0
+  - Change DBModel DB Object To Be *pgxpool.Pool Type
 
 </details>
 
