@@ -170,11 +170,13 @@ Max Kranker
 - 0.51.0
   - Add JS login_form Submit For Authentication On Frontend
 - 0.52.0
-  - Add Logount Frontend Handler
+  - Add Logout Frontend Handler
 - 0.53.0
   - Add /logout Route
 - 0.54.0
   - Redirect To /logout In Base Layout JS Logout Function
+- 0.55.0
+  - Add sessions Table For SCS Session Storage
 
 </details>
 

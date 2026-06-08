@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict A21zBo3GLAWasAzpakEQHrlwSBnF78Tmn2prjrnCOeFOtZF0rckzNtRmHazEhI5
+\restrict vDFyN4fz7ELCZ3PoRvDjX5OEU2LqegIRIB7FwyOgeckahSgLnJofeOeio10gnQX
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
--- Dumped by pg_dump version 18.3
+-- Dumped by pg_dump version 18.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -112,6 +112,19 @@ CREATE TABLE public.schema_migration (
 
 
 ALTER TABLE public.schema_migration OWNER TO postgres;
+
+--
+-- Name: sessions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sessions (
+    token text NOT NULL,
+    data bytea NOT NULL,
+    expiry timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.sessions OWNER TO postgres;
 
 --
 -- Name: statuses; Type: TABLE; Schema: public; Owner: postgres
@@ -431,6 +444,14 @@ ALTER TABLE ONLY public.schema_migration
 
 
 --
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (token);
+
+
+--
 -- Name: statuses statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -486,6 +507,13 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: sessions_expiry_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX sessions_expiry_idx ON public.sessions USING btree (expiry);
+
+
+--
 -- Name: orders orders_customers_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -529,5 +557,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict A21zBo3GLAWasAzpakEQHrlwSBnF78Tmn2prjrnCOeFOtZF0rckzNtRmHazEhI5
+\unrestrict vDFyN4fz7ELCZ3PoRvDjX5OEU2LqegIRIB7FwyOgeckahSgLnJofeOeio10gnQX
 
