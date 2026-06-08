@@ -171,6 +171,8 @@ Max Kranker
   - Add JS login_form Submit For Authentication On Frontend
 - 0.52.0
   - Add Logount Frontend Handler
+- 0.53.0
+  - Add /logout Route
 
 </details>
 
