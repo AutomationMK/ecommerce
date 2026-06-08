@@ -177,6 +177,8 @@ Max Kranker
   - Redirect To /logout In Base Layout JS Logout Function
 - 0.55.0
   - Add sessions Table For SCS Session Storage
+- 0.56.0
+  - Add github.com/alexedwards/scs/pgxstore Module
 
 </details>
 
