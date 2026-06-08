@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/gob"
 	"flag"
 	"fmt"
@@ -13,6 +12,7 @@ import (
 
 	"github.com/AutomationMK/ecommerce/internal/driver"
 	"github.com/AutomationMK/ecommerce/internal/models"
+	"github.com/alexedwards/scs/pgxstore"
 	"github.com/alexedwards/scs/v2"
 )
 
@@ -83,11 +83,12 @@ func main() {
 	if err != nil {
 		errorLog.Fatal(err)
 	}
-	defer conn.Close(context.Background())
+	defer conn.Close()
 
 	// set up session
 	gob.Register(TransactionData{}) // allow session access to TransactionData type
 	session = scs.New()
+	session.Store = pgxstore.New(conn)
 	session.Lifetime = 24 * time.Hour
 
 	tc := make(map[string]*template.Template)

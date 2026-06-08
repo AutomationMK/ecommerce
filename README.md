@@ -183,6 +183,8 @@ Max Kranker
   - Change DBModel DB Object To Be *pgxpool.Pool Type
 - 0.57.1
   - Fix conn.Close To Not Have Context As Argument In Backend
+- 0.58.0
+  - Add Database Pool Connection To session.Store
 
 </details>
 
