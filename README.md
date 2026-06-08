@@ -163,6 +163,8 @@ Max Kranker
   - Fix Virtual Terminal Base Nav A Tag To Use /admin/virtual-terminal
 - 0.48.0
   - Add Authenticate DBModel Method
+- 0.49.0
+  - Add PostLoginPage Frontend Handler
 
 </details>
 
