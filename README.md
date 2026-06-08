@@ -157,6 +157,8 @@ Max Kranker
   - Add Auth Middleware For Frontend 
 - 0.47.0
   - Add /admin Routes Using Auth Middleware
+- 0.47.1
+  - Fix Charge Another Card A Tag To Use /admin/virtual-terminal
 
 </details>
 
