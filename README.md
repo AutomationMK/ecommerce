@@ -187,6 +187,8 @@ Max Kranker
   - Add Database Pool Connection To session.Store
 - 0.58.1
   - Fix Login and Subscription Templates To Use Flex For Section
+- 0.59.0
+  - Add ForgotPassword Frontend Handler
 
 </details>
 
