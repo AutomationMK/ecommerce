@@ -189,6 +189,8 @@ Max Kranker
   - Fix Login and Subscription Templates To Use Flex For Section
 - 0.59.0
   - Add ForgotPassword Frontend Handler
+- 0.60.0
+  - Add /forgot-password GET Route
 
 </details>
 
