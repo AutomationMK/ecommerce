@@ -193,6 +193,8 @@ Max Kranker
   - Add /forgot-password GET Route
 - 0.61.0
   - Add forgot-password Template Page
+- 0.62.0
+  - Add /forgot-password Link At Bottom Of Login Form
 
 </details>
 
