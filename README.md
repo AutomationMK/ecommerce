@@ -185,6 +185,8 @@ Max Kranker
   - Fix conn.Close To Not Have Context As Argument In Backend
 - 0.58.0
   - Add Database Pool Connection To session.Store
+- 0.58.1
+  - Fix Login and Subscription Templates To Use Flex For Section
 
 </details>
 

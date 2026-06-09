@@ -7,12 +7,12 @@ Bronze Plan
 {{define "content"}}
 {{$widget := index .Data "widget"}}
 <section class="container mx-auto px-4">
-    <section class="grid gap-x-3 gap-y-4 xl:grid-cols-2 py-10">
-        <h2 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center text-blue-500 text-bold xl:col-span-full">
+    <section class="flex flex-col items-center gap-4 py-10">
+        <h2 class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center text-blue-500 text-bold">
             Subscription</h2>
-        <hr class="xl:col-span-full border-blue-500">
+        <hr class="w-full border-blue-500">
         <form action="/payment-succeded" method="post" name="charge_form" id="charge_form"
-            class="charge-form grid gap-x-3 gap-y-5 bg-blue-500 rounded-lg px-4 py-6 max-w-4xl w-full justify-self-center"
+            class="charge-form grid gap-x-3 gap-y-5 bg-blue-500 rounded-lg px-4 py-6 max-w-4xl w-full"
             autocomplete="off" novalidate="">
 
             <div class="hidden text-center px-4 py-2 rounded-lg" id="card-messages"></div>
