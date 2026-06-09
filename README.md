@@ -197,6 +197,8 @@ Max Kranker
   - Add /forgot-password Link At Bottom Of Login Form
 - 0.63.0
   - Add github.com/xhit/go-simple-mail/v2 Module
+- 0.63.1
+  - Fix ForgetPassword Handler To Have Notes
 
 </details>
 
