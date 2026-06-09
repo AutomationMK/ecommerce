@@ -195,6 +195,8 @@ Max Kranker
   - Add forgot-password Template Page
 - 0.62.0
   - Add /forgot-password Link At Bottom Of Login Form
+- 0.63.0
+  - Add github.com/xhit/go-simple-mail/v2 Module
 
 </details>
 
