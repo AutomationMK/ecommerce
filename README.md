@@ -207,6 +207,8 @@ Max Kranker
   - Add github.com/bwmarrin/go-alone Module
 - 0.67.0
   - Add STMP Flag Variables To Backend
+- 0.68.0
+  - Add secretkey and frontend Flag Variables To Backend
 
 </details>
 
