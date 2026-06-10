@@ -201,6 +201,8 @@ Max Kranker
   - Fix ForgetPassword Handler To Have Notes
 - 0.64.0
   - Add SendMail Helper Function For Backend
+- 0.65.0
+  - Add password-reset HTML and Plain Templates
 
 </details>
 
