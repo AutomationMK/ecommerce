@@ -219,6 +219,8 @@ Max Kranker
   - Add secretkey and frontend Flag Variables To Frontend
 - 0.73.0
   - Add ShowResetPassword Frontend Handler
+- 0.74.0
+  - Add /reset-password GET Route
 
 </details>
 
