@@ -221,6 +221,8 @@ Max Kranker
   - Add ShowResetPassword Frontend Handler
 - 0.74.0
   - Add /reset-password GET Route
+- 0.75.0
+  - Add password-reset Template Page
 
 </details>
 
