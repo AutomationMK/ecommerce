@@ -215,6 +215,8 @@ Max Kranker
   - Add SendPasswordResetEmail API Handler
 - 0.71.0
   - Add /api/forgot-password Route
+- 0.72.0
+  - Add secretkey and frontend Flag Variables To Frontend
 
 </details>
 
