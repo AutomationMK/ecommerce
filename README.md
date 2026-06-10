@@ -217,6 +217,8 @@ Max Kranker
   - Add /api/forgot-password Route
 - 0.72.0
   - Add secretkey and frontend Flag Variables To Frontend
+- 0.73.0
+  - Add ShowResetPassword Frontend Handler
 
 </details>
 

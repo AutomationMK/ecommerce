@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
 	"github.com/AutomationMK/ecommerce/internal/models"
+	"github.com/AutomationMK/ecommerce/internal/urlsigner"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -360,6 +362,32 @@ func (app *application) Logout(w http.ResponseWriter, r *http.Request) {
 // ForgotPassword loads the forgot-password template page
 func (app *application) ForgotPassword(w http.ResponseWriter, r *http.Request) {
 	if err := app.renderTemplate(w, r, "forgot-password", &templateData{}); err != nil {
+		app.errorLog.Print(err)
+	}
+}
+
+// ShowResetPassword validates the url token and displays the reset-password template page
+func (app *application) ShowResetPassword(w http.ResponseWriter, r *http.Request) {
+	// get url parameters
+	theURL := r.RequestURI
+	testURL := fmt.Sprintf("%s%s", app.config.frontend, theURL)
+
+	// verify url with app level secretkey
+	signer := urlsigner.Signer{
+		Secret: []byte(app.config.secretkey),
+	}
+	valid := signer.VerifyToken(testURL)
+	if !valid {
+		app.errorLog.Println("Invalid url - tampering detected")
+		return
+	}
+
+	data := make(map[string]any)
+	data["email"] = r.URL.Query().Get("email")
+
+	if err := app.renderTemplate(w, r, "reset-password", &templateData{
+		Data: data,
+	}); err != nil {
 		app.errorLog.Print(err)
 	}
 }
