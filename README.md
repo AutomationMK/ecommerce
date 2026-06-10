@@ -213,6 +213,8 @@ Max Kranker
   - Add Initial urlsigner Package That Implements go-alone Module
 - 0.70.0
   - Add SendPasswordResetEmail API Handler
+- 0.71.0
+  - Add /api/forgot-password Route
 
 </details>
 
