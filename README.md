@@ -225,6 +225,8 @@ Max Kranker
   - Add password-reset Template Page
 - 0.76.0
   - Add UpdatePasswordForUser DBModel Method
+- 0.77.0
+  - Add ResetPassword API Handler
 
 </details>
 
