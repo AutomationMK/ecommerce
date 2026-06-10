@@ -24,6 +24,12 @@ type config struct {
 		secret string
 		key    string
 	}
+	smtp struct {
+		host     string
+		port     int
+		username string
+		password string
+	}
 }
 
 type application struct {
@@ -59,6 +65,10 @@ func main() {
 	flag.IntVar(&cfg.port, "port", 4001, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment {development|production|maintenance}")
 	flag.StringVar(&cfg.db.dsn, "dsn", fmt.Sprintf("host=localhost port=5431 dbname=%s user=%s password=%s", dbName, dbUser, dbPassword), "Database DSN string")
+	flag.StringVar(&cfg.smtp.username, "smtpusername", "", "SMTP Username")
+	flag.StringVar(&cfg.smtp.password, "smtppassword", "", "SMTP Password")
+	flag.StringVar(&cfg.smtp.host, "smtphost", "localhost", "SMTP Host")
+	flag.IntVar(&cfg.smtp.port, "smtpport", 1025, "SMTP Port")
 
 	flag.Parse()
 

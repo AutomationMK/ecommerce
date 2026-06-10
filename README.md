@@ -205,6 +205,8 @@ Max Kranker
   - Add password-reset HTML and Plain Templates
 - 0.66.0
   - Add github.com/bwmarrin/go-alone Module
+- 0.67.0
+  - Add STMP Flag Variables To Backend
 
 </details>
 
