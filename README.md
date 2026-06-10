@@ -203,6 +203,8 @@ Max Kranker
   - Add SendMail Helper Function For Backend
 - 0.65.0
   - Add password-reset HTML and Plain Templates
+- 0.66.0
+  - Add github.com/bwmarrin/go-alone Module
 
 </details>
 
