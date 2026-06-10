@@ -11,6 +11,7 @@ import (
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
 	"github.com/AutomationMK/ecommerce/internal/models"
+	"github.com/AutomationMK/ecommerce/internal/urlsigner"
 	"github.com/go-chi/chi/v5"
 	"github.com/stripe/stripe-go/v84"
 )
@@ -421,4 +422,59 @@ func (app *application) VirtualTerminalPaymentSucceeded(w http.ResponseWriter, r
 	}
 
 	app.writeJSON(w, http.StatusOK, txn)
+}
+
+// SendPasswordResetEmail sends an email to reset a user password
+func (app *application) SendPasswordResetEmail(w http.ResponseWriter, r *http.Request) {
+	var payload struct {
+		Email string `json:"email"`
+	}
+
+	err := app.readJSON(w, r, &payload)
+	if err != nil {
+		app.badRequest(w, r, err)
+		return
+	}
+
+	// verify that email exists
+	_, err = app.DB.GetUserByEmail(payload.Email)
+	if err != nil {
+		var resp struct {
+			Error   bool   `json:"error"`
+			Message string `json:"message"`
+		}
+		resp.Error = true
+		resp.Message = "No matching email found on our system"
+		app.writeJSON(w, http.StatusAccepted, resp)
+	}
+
+	// create a signed link for redirecting to reset password
+	link := fmt.Sprintf("%s/reset-password?email=%s", app.config.frontend, payload.Email)
+	sign := urlsigner.Signer{
+		Secret: []byte(app.config.secretkey),
+	}
+	signedLink := sign.GenerateTokenFromString(link)
+
+	var data struct {
+		Link string
+	}
+
+	data.Link = signedLink
+
+	// send mail
+	err = app.SendMail("info@widgets.com", payload.Email, "Password Reset Request", "password-reset", data)
+	if err != nil {
+		app.errorLog.Println(err)
+		app.badRequest(w, r, err)
+		return
+	}
+
+	var resp struct {
+		Error   bool   `json:"error"`
+		Message string `json:"message"`
+	}
+
+	resp.Error = false
+
+	app.writeJSON(w, http.StatusCreated, resp)
 }

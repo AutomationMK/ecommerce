@@ -211,6 +211,8 @@ Max Kranker
   - Add secretkey and frontend Flag Variables To Backend
 - 0.69.0
   - Add Initial urlsigner Package That Implements go-alone Module
+- 0.70.0
+  - Add SendPasswordResetEmail API Handler
 
 </details>
 
