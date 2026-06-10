@@ -227,6 +227,8 @@ Max Kranker
   - Add UpdatePasswordForUser DBModel Method
 - 0.77.0
   - Add ResetPassword API Handler
+- 0.78.0
+  - Add /api/reset-password API Route
 
 </details>
 
