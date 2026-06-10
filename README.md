@@ -209,6 +209,8 @@ Max Kranker
   - Add STMP Flag Variables To Backend
 - 0.68.0
   - Add secretkey and frontend Flag Variables To Backend
+- 0.69.0
+  - Add Initial urlsigner Package That Implements go-alone Module
 
 </details>
 
