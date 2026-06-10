@@ -199,6 +199,8 @@ Max Kranker
   - Add github.com/xhit/go-simple-mail/v2 Module
 - 0.63.1
   - Fix ForgetPassword Handler To Have Notes
+- 0.64.0
+  - Add SendMail Helper Function For Backend
 
 </details>
 
