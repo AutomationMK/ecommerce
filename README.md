@@ -223,6 +223,8 @@ Max Kranker
   - Add /reset-password GET Route
 - 0.75.0
   - Add password-reset Template Page
+- 0.76.0
+  - Add UpdatePasswordForUser DBModel Method
 
 </details>
 
