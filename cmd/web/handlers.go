@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
+	"github.com/AutomationMK/ecommerce/internal/encryption"
 	"github.com/AutomationMK/ecommerce/internal/models"
 	"github.com/AutomationMK/ecommerce/internal/urlsigner"
 	"github.com/go-chi/chi/v5"
@@ -389,8 +390,19 @@ func (app *application) ShowResetPassword(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	// encrypt the email to display on the reset-password template
+	email := r.URL.Query().Get("email")
+	encryptor := encryption.Encryption{
+		Key: []byte(app.config.secretkey),
+	}
+	encryptedEmail, err := encryptor.Encrypt(email)
+	if err != nil {
+		app.errorLog.Println("encryption failed")
+		return
+	}
+
 	data := make(map[string]any)
-	data["email"] = r.URL.Query().Get("email")
+	data["email"] = encryptedEmail
 
 	if err := app.renderTemplate(w, r, "reset-password", &templateData{
 		Data: data,
