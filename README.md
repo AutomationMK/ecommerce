@@ -231,6 +231,8 @@ Max Kranker
   - Add /api/reset-password API Route
 - 0.79.0
   - Add Note Mentioning Pasword Reset Link Expriy To Email Templates
+- 0.80.0
+  - Add Email Link Exiry Handling In ShowResetPassword Handler
 
 </details>
 
