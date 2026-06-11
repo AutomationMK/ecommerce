@@ -239,6 +239,8 @@ Max Kranker
   - Add encryption Package With Encrypt and Decrypt Methods
 - 0.82.0
   - Add Encryption Of Users Email To ShowResetPassword Handler
+- 0.83.0
+  - Add Decryption Of Users Email To ResetPassword API Handler
 
 </details>
 

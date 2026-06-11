@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/AutomationMK/ecommerce/internal/cards"
+	"github.com/AutomationMK/ecommerce/internal/encryption"
 	"github.com/AutomationMK/ecommerce/internal/models"
 	"github.com/AutomationMK/ecommerce/internal/urlsigner"
 	"github.com/go-chi/chi/v5"
@@ -493,7 +494,17 @@ func (app *application) ResetPassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, err := app.DB.GetUserByEmail(payload.Email)
+	// decrypt email from json payload
+	encryptor := encryption.Encryption{
+		Key: []byte(app.config.secretkey),
+	}
+	realEmail, err := encryptor.Decrypt(payload.Email)
+	if err != nil {
+		app.badRequest(w, r, err)
+		return
+	}
+
+	user, err := app.DB.GetUserByEmail(realEmail)
 	if err != nil {
 		app.badRequest(w, r, err)
 		return
