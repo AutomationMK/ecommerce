@@ -233,6 +233,8 @@ Max Kranker
   - Add Note Mentioning Pasword Reset Link Expriy To Email Templates
 - 0.80.0
   - Add Email Link Exiry Handling In ShowResetPassword Handler
+- 0.80.1
+  - Fix Default secretkey To Be Exactly 32 Characters long
 
 </details>
 
