@@ -235,6 +235,8 @@ Max Kranker
   - Add Email Link Exiry Handling In ShowResetPassword Handler
 - 0.80.1
   - Fix Default secretkey To Be Exactly 32 Characters long
+- 0.81.0
+  - Add encryption Package With Encrypt and Decrypt Methods
 
 </details>
 
