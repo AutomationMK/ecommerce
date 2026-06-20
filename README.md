@@ -255,6 +255,8 @@ Max Kranker
   - Fix renderTemplate To Only Use templateInMap For If Template Caching
 - 0.88.2
   - Remove Commented Out Routes From /admin Route
+- 0.89.0
+  - Migrate To Seed widgets Database Table
 
 </details>
 
