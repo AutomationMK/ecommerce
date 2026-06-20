@@ -253,6 +253,8 @@ Max Kranker
   - Add /admin/all-sales and /admin/all-subscriptions To Admin Nav Bar
 - 0.88.1
   - Fix renderTemplate To Only Use templateInMap For If Template Caching
+- 0.88.2
+  - Remove Commented Out Routes From /admin Route
 
 </details>
 
