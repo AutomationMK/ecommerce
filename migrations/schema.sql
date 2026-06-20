@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict dsZzlbSHCydVswBaJ7WYcpuegaHSmHzSpQqO7siAoTFfRKNNrAovMDCEXuFSX3a
+\restrict j93Nmaie1iLOGQ61zD5iX46AQREnqdhHt3UD15mt8EE1A8gRzFx2R3cPnLazlSK
 
 -- Dumped from database version 18.1 (Debian 18.1-1.pgdg13+2)
 -- Dumped by pg_dump version 18.4
@@ -557,5 +557,5 @@ ALTER TABLE ONLY public.transactions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict dsZzlbSHCydVswBaJ7WYcpuegaHSmHzSpQqO7siAoTFfRKNNrAovMDCEXuFSX3a
+\unrestrict j93Nmaie1iLOGQ61zD5iX46AQREnqdhHt3UD15mt8EE1A8gRzFx2R3cPnLazlSK
 

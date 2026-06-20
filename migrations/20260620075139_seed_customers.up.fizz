@@ -1,0 +1,2 @@
+sql("insert into customers (first_name, last_name, email, created_at, updated_at) values ('Bruce', 'Wayne', 'bruce@wayneenterprises.com', now(), now());")
+sql("insert into customers (first_name, last_name, email, created_at, updated_at) values ('Clark', 'Kent', 'clark@dailyplanet.com', now(), now());")

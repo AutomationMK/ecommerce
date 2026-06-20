@@ -257,6 +257,8 @@ Max Kranker
   - Remove Commented Out Routes From /admin Route
 - 0.89.0
   - Migrate To Seed widgets Database Table
+- 0.90.0
+  - Migrate To Seed customers Table
 
 </details>
 
