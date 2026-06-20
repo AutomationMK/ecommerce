@@ -530,3 +530,19 @@ func (app *application) ResetPassword(w http.ResponseWriter, r *http.Request) {
 	resp.Message = "Password changed"
 	app.writeJSON(w, http.StatusCreated, resp)
 }
+
+// AllSales returns a json bady with all non-recurring orders
+func (app *application) AllSales(w http.ResponseWriter, r *http.Request) {
+	allSales, err := app.DB.GetAllOrders()
+	if err != nil {
+		if err := app.badRequest(w, r, err); err != nil {
+			app.errorLog.Print(err)
+			return
+		}
+		return
+	}
+
+	if err := app.writeJSON(w, http.StatusOK, allSales); err != nil {
+		app.errorLog.Print(err)
+	}
+}

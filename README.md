@@ -269,6 +269,8 @@ Max Kranker
   - Add GetAllOrders DBModel Method
 - 0.93.1
   - Remove /admin/test Route
+- 0.94.0
+  - Add AllSales API Handler
 
 </details>
 
