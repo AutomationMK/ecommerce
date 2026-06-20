@@ -249,6 +249,8 @@ Max Kranker
   - Add navDropdown JS Module
 - 0.87.0
   - Add Admin Dropdown If Template Var IsAuthenticated Is 1
+- 0.88.0
+  - Add /admin/all-sales and /admin/all-subscriptions To Admin Nav Bar
 
 </details>
 
