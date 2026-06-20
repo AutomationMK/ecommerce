@@ -271,6 +271,8 @@ Max Kranker
   - Remove /admin/test Route
 - 0.94.0
   - Add AllSales API Handler
+- 0.95.0
+  - Add /api/admin/all-sales POST API Route
 
 </details>
 
