@@ -267,6 +267,8 @@ Max Kranker
   - Add Widget, Transaction and Customer Models To Order Model
 - 0.93.0
   - Add GetAllOrders DBModel Method
+- 0.93.1
+  - Remove /admin/test Route
 
 </details>
 
