@@ -247,6 +247,8 @@ Max Kranker
   - Set IsAuthenticated Template Data In addDefaultData
 - 0.86.0
   - Add navDropdown JS Module
+- 0.87.0
+  - Add Admin Dropdown If Template Var IsAuthenticated Is 1
 
 </details>
 

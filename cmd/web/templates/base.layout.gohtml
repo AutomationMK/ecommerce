@@ -12,6 +12,14 @@
     </title>
     <link href="/static/css/style.css" rel="stylesheet" />
     <script defer src="/static/js/index.js"></script>
+
+    <script type="module">
+        import NavDropdown from "/static/js/navDropdown.js";
+        const navDropdowns = document.querySelectorAll(".nav-dropdown");
+        navDropdowns.forEach((navDropdown) => {
+            new NavDropdown(navDropdown);
+        });
+    </script>
 </head>
 
 <body class="overflow-x-hidden bg-white">
@@ -29,7 +37,7 @@
                     </div>
                 </div>
                 <div class="flex gap-4 max-lg:overflow-hidden">
-                    <ul class="nav">
+                    <ul class="nav max-lg:overflow-y-scroll main-scrollbar">
                         <li>
                             <a href="/"
                                 class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Home</a>
@@ -43,15 +51,43 @@
                             <a href="/plans/bronze"
                                 class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Subscription</a>
                         </li>
-                        <li id="vt-link">
-                            <a href="/admin/virtual-terminal"
-                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl none">Virtual
-                                Terminal</a>
+
+                        {{if eq .IsAuthenticated 1}}
+                        <li
+                            class="nav-dropdown flex flex-col h-fit relative lg:static lg:justify-center items-center gap-1 lg:h-full ml-9 lg:ml-0">
+                            <div class="flex items-center gap-1">
+                                <h3 id="nav-header"
+                                    class="text-xl text-white font-bold transition lg:text-lg xl:text-2xl">
+                                    Admin
+                                </h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="nav-icon"
+                                    class="h-10 lg:h-6 xl:h-8 text-white transition" viewBox="0 0 512 512">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144" />
+                                </svg>
+                            </div>
+                            <ul id="nav-list"
+                                class="overflow-hidden flex flex-col gap-3 max-h-0 border-white rounded-b-sm lg:bg-blue-300/80 lg:absolute lg:bottom-0 lg:translate-y-full ease-in-out duration-100 lg:gap-4">
+                                <li>
+                                    <a href="/admin/virtual-terminal"
+                                        class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">
+                                        Virtual Terminal
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/logout"
+                                        class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                        {{else}}
                         <li id="login-link">
                             <a href="/login"
-                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl none">Login</a>
+                                class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Login</a>
                         </li>
+                        {{end}}
                     </ul>
                     <div class="hamburger lg:hidden"></div>
                 </div>
