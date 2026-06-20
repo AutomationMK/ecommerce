@@ -277,6 +277,8 @@ Max Kranker
   - Add slide Component Classes
 - 0.97.0
   - Add dropdown Component Classes
+- 0.98.0
+  - Add table JS Module File
 
 </details>
 
