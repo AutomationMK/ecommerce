@@ -293,7 +293,7 @@ func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
 
 // BronzePlan renders the bronze-plan template
 func (app *application) BronzePlan(w http.ResponseWriter, r *http.Request) {
-	widget, err := app.DB.GetWidget(2)
+	widget, err := app.DB.GetWidgetByName("Bronze Plan")
 	if err != nil {
 		app.errorLog.Println(err)
 		return

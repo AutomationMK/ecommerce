@@ -261,6 +261,8 @@ Max Kranker
   - Migrate To Seed customers Table
 - 0.91.0
   - Add GetWidgetsByName DBModel Method
+- 0.91.1
+  - Fix BronzePlan Handler To Use GetWidgetByName Instead
 
 </details>
 
