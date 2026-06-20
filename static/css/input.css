@@ -49,4 +49,9 @@
     .dots_dot-active {
         @apply bg-blue-500;
     }
+
+    /********** dropdown select styles **********/
+    .select_dropdown-li {
+        @apply transition block text-center px-4 py-2 hover:bg-blue-300 hover:text-white;
+    }
 }

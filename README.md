@@ -275,6 +275,8 @@ Max Kranker
   - Add /api/admin/all-sales POST API Route
 - 0.96.0
   - Add slide Component Classes
+- 0.97.0
+  - Add dropdown Component Classes
 
 </details>
 
