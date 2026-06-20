@@ -273,6 +273,8 @@ Max Kranker
   - Add AllSales API Handler
 - 0.95.0
   - Add /api/admin/all-sales POST API Route
+- 0.96.0
+  - Add slide Component Classes
 
 </details>
 

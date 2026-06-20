@@ -17,4 +17,36 @@
     .hamburger.close {
         @apply before:rotate-45 before:translate-y-1 after:w-2/3 after:-rotate-45 after:-translate-y-1;
     }
+
+    .slide {
+        @apply ease-in-out duration-300;
+    }
+
+    .slide_btn {
+        @apply w-10 md:w-12 h-10 md:h-12 p-1 border-3 border-blue-500 bg-blue-500 rounded-md hover:bg-blue-300 transition md:p-2 cursor-pointer;
+    }
+
+    .slide_btn_logo {
+        @apply h-6 text-white stroke-2 md:stroke-3;
+    }
+
+    .slide_btn-left {
+        @apply left-4;
+    }
+
+    .slide_btn-right {
+        @apply right-4;
+    }
+
+    .dots {
+        @apply flex gap-6;
+    }
+
+    .dots_dot {
+        @apply border-none bg-blue-500 h-4 w-4 lg:h-6 lg:w-6 rounded-md cursor-pointer transition;
+    }
+
+    .dots_dot-active {
+        @apply bg-blue-500;
+    }
 }
