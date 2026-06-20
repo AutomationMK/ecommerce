@@ -243,6 +243,8 @@ Max Kranker
   - Add Decryption Of Users Email To ResetPassword API Handler
 - 0.84.0
   - Remove Login/Logout Conditional Handling From Base Layout
+- 0.85.0
+  - Set IsAuthenticated Template Data In addDefaultData
 
 </details>
 
