@@ -259,6 +259,8 @@ Max Kranker
   - Migrate To Seed widgets Database Table
 - 0.90.0
   - Migrate To Seed customers Table
+- 0.91.0
+  - Add GetWidgetsByName DBModel Method
 
 </details>
 

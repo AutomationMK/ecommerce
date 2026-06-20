@@ -66,6 +66,31 @@ func (m *DBModel) GetWidget(id int) (Widget, error) {
 	return widget, nil
 }
 
+// GetWidget gets widget data from the database
+func (m *DBModel) GetWidgetByName(name string) (Widget, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	var widget Widget
+
+	query := `
+		SELECT id, name, description, inventory_level, price, image,
+			is_recurring, plan_id, created_at, updated_at
+		FROM widgets
+		WHERE name = $1
+	`
+	row := m.DB.QueryRow(ctx, query, name)
+	err := row.Scan(&widget.ID, &widget.Name, &widget.Description,
+		&widget.InventoryLevel, &widget.Price, &widget.Image,
+		&widget.IsRecurring, &widget.PlanID, &widget.CreatedAt,
+		&widget.UpdatedAt)
+	if err != nil {
+		return widget, err
+	}
+
+	return widget, nil
+}
+
 // Order is the type for all orders
 type Order struct {
 	ID            int       `json:"id"`
