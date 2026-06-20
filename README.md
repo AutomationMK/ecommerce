@@ -245,6 +245,8 @@ Max Kranker
   - Remove Login/Logout Conditional Handling From Base Layout
 - 0.85.0
   - Set IsAuthenticated Template Data In addDefaultData
+- 0.86.0
+  - Add navDropdown JS Module
 
 </details>
 
