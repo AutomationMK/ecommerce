@@ -64,20 +64,6 @@
     </main>
 
     <script>
-        let loginLink = document.getElementById("login-link");
-        let vtLink = document.getElementById("vt-link");
-
-        document.addEventListener("DOMContentLoaded", function () {
-            if (localStorage.getItem("token") !== null) {
-                loginLink.innerHTML = '<a href="#|" onclick="logout()" class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Logout</a>';
-                vtLink.classList.remove("none");
-            } else {
-                loginLink.innerHTML = '<a href="/login" class="text-xl text-white font-bold hover:text-gray-300 transition lg:text-lg xl:text-2xl">Login</a>'
-            }
-
-            loginLink.classList.remove("none");
-        })
-
         function logout() {
             localStorage.removeItem("token");
             localStorage.removeItem("token_expiry");

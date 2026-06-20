@@ -241,6 +241,8 @@ Max Kranker
   - Add Encryption Of Users Email To ShowResetPassword Handler
 - 0.83.0
   - Add Decryption Of Users Email To ResetPassword API Handler
+- 0.84.0
+  - Remove Login/Logout Conditional Handling From Base Layout
 
 </details>
 
