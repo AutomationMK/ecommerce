@@ -138,6 +138,70 @@ func (m *DBModel) InsertOrder(ord Order) (int, error) {
 	return newID, nil
 }
 
+// GetAllOrders returns all orders that are non-recurring
+func (m *DBModel) GetAllOrders() ([]*Order, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	var orders []*Order
+	query := `
+		SELECT o.id, o.status_id, o.quantity, o.created_at, o.updated_at,
+			o.widget_id, w.id, w.name, o.transaction_id, t.id, t.amount,
+			t.currency, t.last_four, t.expiry_month, t.expiry_year,
+			t.payment_intent, t.payment_method, t.bank_return_code, o.customer_id, c.id,
+			c.first_name, c.last_name, c.email
+		FROM orders AS o
+			LEFT JOIN widgets AS w ON o.widget_id = w.id
+			LEFT JOIN transactions AS t ON o.transaction_id = t.id
+			LEFT JOIN customers AS c ON o.customer_id = c.id
+		WHERE w.is_recurring = false
+		ORDER BY o.created_at DESC`
+	rows, err := m.DB.Query(ctx, query)
+	if err != nil {
+		return orders, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var order Order
+		err = rows.Scan(
+			&order.ID,
+			&order.StatusID,
+			&order.Quantity,
+			&order.CreatedAt,
+			&order.UpdatedAt,
+			&order.WidgetID,
+			&order.Widget.ID,
+			&order.Widget.Name,
+			&order.TransactionID,
+			&order.Transaction.ID,
+			&order.Transaction.Amount,
+			&order.Transaction.Currency,
+			&order.Transaction.LastFour,
+			&order.Transaction.ExpiryMonth,
+			&order.Transaction.ExpiryYear,
+			&order.Transaction.PaymentIntent,
+			&order.Transaction.PaymentMethod,
+			&order.Transaction.BankReturnCode,
+			&order.CustomerID,
+			&order.Customer.ID,
+			&order.Customer.FirstName,
+			&order.Customer.LastName,
+			&order.Customer.Email,
+		)
+		if err != nil {
+			return orders, err
+		}
+
+		orders = append(orders, &order)
+	}
+	if err = rows.Err(); err != nil {
+		return orders, err
+	}
+
+	return orders, nil
+}
+
 // Status is the type for all statuses
 type Status struct {
 	ID        int       `json:"id"`

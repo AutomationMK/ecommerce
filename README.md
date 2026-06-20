@@ -265,6 +265,8 @@ Max Kranker
   - Fix BronzePlan Handler To Use GetWidgetByName Instead
 - 0.92.0
   - Add Widget, Transaction and Customer Models To Order Model
+- 0.93.0
+  - Add GetAllOrders DBModel Method
 
 </details>
 
